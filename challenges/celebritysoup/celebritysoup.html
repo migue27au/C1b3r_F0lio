@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>C1b3r_F0lio</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Boostrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	<!-- footer -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../../css/footer.css">
+
+</head>
+<body class="bg-dark">
+
+
+	<header>
+		<div> <!--navbar -->
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="index.html">C1b3r_F0lio</a>
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item active">
+						<a class="nav-link" href="../../index.html">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../../challenges.html">Challenges</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../../proyects.html">Proyectos</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		</div>
+		<div> <!--background image -->
+			<img src="../../images/background.gif" class="img-fluid" alt="Responsive image">
+		</div>
+	</header>
+	<br/>
+	<main class="container bg-dark text-white">
+		
+		<h1 class="display-4">CelebritySoup</h1>
+		
+		<p>Esta máquina se encuentra en la plataforma HackMyVM y ha sido creada por el usuario <em><a href="https://shelldredd.github.io/ShellDredd/">ShellDredd</a></em>.</p>
+
+		<p>Es una máquina fácil tanto en la acceso como en la escalada de privilegios y sobre todo bastante entretenida.</p>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Enumeración</h4>
+		<hr>
+
+		<p>Antes que nada será necesario conocer la dirección IP de la máquina objetivo para lo que se utilizará la herramienta <a href="https://github.com/migue27au/ping-sweep" data-type="URL" data-id="https://github.com/migue27au/ping-sweep">ping-sweep</a>.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="1.png" alt="" class="img-fluid">
+		</div>
+
+		<p>La herramienta ha detectado 4 IP:</p>
+		<ul><li><span style="font-family: var(--list--font-family); background-color: var(--global--color-background); color: var(--global--color-primary); font-size: var(--global--font-size-base);">10.10.10.1 → Gateway</span></li><li>10.10.10.100 → Host anfitrión</li><li>10.10.10.101 → Raspberry</li><li>10.10.10.102 → Máquina objetivo</li></ul>
+
+		<p>Una vez identificada la máquina objetivo se procede a realizar la enumeración. Primero se inicia un reconocimiento del sistema operativo basado en el TTL mediante la herramienta
+			<a href="https://github.com/migue27au/OSFinder" data-type="URL">findos</a>.
+		</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="2.png" alt="" class="img-fluid">
+		</div>
+
+		<p>La herramienta ha identificado la máquina como un Linux. A continuación se realizará la enumeración de los puertos con la ayuda de la herramienta nmap.</p>
+
+		<p>El escaneo de puertos se divide en dos. Un primer escaneo rápido de todos los puertos para identificar aquellos abiertos y un segundo escaneo para conocer qué servicios están corriendo en esos puertos.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="3.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Como el escaneo se exporta en formato Grepable puede utilizarse la herramienta <a href="https://github.com/migue27au/get-ports" data-type="URL" data-id="https://github.com/migue27au/get-ports">get-ports</a> para copiar los puertos abiertos y pegarlos para realizar el escaneo exhaustivo.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="4.png" alt="" class="img-fluid">
+		</div>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="5.png" alt="" class="img-fluid">
+		</div>
+
+		<p>El escaneo exhaustivo ha desvelado que las siguientes versiones:</p>
+
+		<ul><li>FTP: vsftpd 3.0.3.</li><li>SSH: OpenSSH 7.9p1.</li><li>HTTP: Apache httpd 2.4.38.</li></ul>
+
+		<p>El servicio HTTP está habilitado por lo que vamos a ver qué es lo que hay en la página web.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="6.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Se muestra la página por defecto de Apache, pero comprobando si existe un archivo robots.txt se encuentra lo siguiente:</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="7.png" alt="" class="img-fluid">
+		</div>
+
+		<ul><li>/contract1.html</li><li>/contract2.html</li><li>/contract3.html</li><li>/contract4.html</li><li>/sector1.html</li><li>/sector2.html</li><li>/sector3.html</li><li>/sector4.html</li><li>/sector5.html</li><li>/sector6.html</li><li>/sector7.html</li><li>/sector8.html</li><li>/sector9.html</li><li>/sector10.html</li></ul>
+
+		<p>Analizando el código fuente de estos ficheros se encuentra que algunos que siguen el patrón /sector….html, al final del código, se encuentra un div con un atributo secret.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="8.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Se crea un pequeño código en bash para obtener todos estos códigos de manera rápida y poder identificar el secreto.</p>
+
+		<div class="container ml-4">
+			<code><pre class="text-white">
+!/bin/bash
+secret=""
+VAR1=http://10.10.10.102/sector;
+VAR2=".html"
+for i in {1..10..1}; do
+	VAR3=$VAR1$i$VAR2
+	response=$( curl $VAR3 -s | tail -n 4 | head -n 1 | cut -d '"' -f 2)
+	if [[ $response != "" ]] && [[ $response != "" ]]; then
+		secret=$secret$response
+	fi
+	echo "URL: $VAR3 --> $secret";
+done;
+echo "secret --> $secret";</pre></code>
+		</div>
+
+		<p>Ejecutando este script se obtiene el secreto oculto.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="9.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Durante el desarrollo del script se descubrió que uno de los archivos, el /sector9.html, tiene una longitud mayor al resto. Visualizando este archivo en el navegador se encuentra que tiene contenido.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="10.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Tras un buen rato investigando en esta página se prueba a crear un diccionario a partir de las palabras del sitio web y utilizarlo para hacer fuzzing. Este diccionario se realiza haciendo uso de la herramienta cewl.</p>
+
+		<div class="container ml-4">
+			<code><pre class="text-white">
+cewl "http://10.10.10.102/sector9.html" --with-numbers -w dic.txt</pre></code>
+		</div>
+
+		<p>Una vez con el diccionario se utiliza la herramienta wfuzz para hacer fuzzing al sitio web con la esperanza de descubrir un recurso que no estuviera en el archivo robots.txt.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="11.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Ha habido buena suerte, se ha encontrado el recurso project2501.html. Este recurso únicamente tiene una imagen por lo que da a pensar que puede contener información oculta.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="12.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Se descarga la imagen y se pasa por un analizador de esteganografía online.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="13.png" alt="" class="img-fluid">
+		</div>
+		<p></p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="14.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Para realizar la decodificación esteganográfica se utiliza el sitio web: <a href="https://stylesuxx.github.io/steganography/" target="_blank" rel="noreferrer noopener">https://stylesuxx.github.io/steganography/</a>. </p>
+
+		<p> Puede observarse que justo al principio de la imagen se encuentra un código binario. Este código se copia y se pega en el parseador binario-ascii: <a href="https://www.calculadoraconversor.com/binario-a-ascii/" target="_blank" rel="noreferrer noopener">https://www.calculadoraconversor.com/binario-a-ascii/</a>.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="15.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Se obtiene el texto digital-brain-is-transcending. En este momento tenemos unas posibles credenciales → puppetmaster:digital-brain-is-transcending.</p>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Conseguir acceso</h4>
+		<hr>
+
+		<p>Se intenta la conexión al con SSH utilizando estas credenciales y se consigue acceso.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="16.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Se recoge la flag de user:</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="17.png" alt="" class="img-fluid">
+		</div>
+
+		<p>A continuación se procede a realizar la escalada de privilegios.</p>
+
+		<p>En la carpeta del usuario puppetmaster existe un binario con nombre systeminfo creado por root y que tiene permisos de ejecución.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="18.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Como es un archivo interesante se ejecuta para saber qué es lo que hace:</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="19.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Parece que el binario ejecuta una serie de comandos como root y muestra la información al usuario. Que este archivo sea ejecutado como root es interesante por lo que  se realiza un análisis estático básico analizando los strings mediante la herramienta strings.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="20.png" alt="" class="img-fluid">
+		</div>
+
+		<p>En la captura anterior se pueden ver los comandos que ejecuta el binario y puede verse que «cat» utiliza rutas relativas por lo que está claro cuál que habrá que realizar un Path Hijacking.</p>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Escalada de privilegios</h4>
+		<hr>
+
+		<p>Se crea un archivo malicioso en la carpeta temporal y con nombre cat y se incluye dentro la ejecución de una bash en modo privilegiado.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="21.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Una vez esto hay que modificar el PATH para que priorice el cat malicioso.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="22.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Tras esto vuelve a ejecutarse el binario systeminfo y ¡eureka! ya somos root.</p>
+		
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="23.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Finalmente se obtiene el flag de root quedando finalizada la máquina. Como hemos modificado «cat» podemos utilizar otro «more» o «less» para obtener el contenido del root.txt.</p>
+		
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="24.png" alt="" class="img-fluid">
+		</div>
+
+	</main>
+	<br/>
+	<footer class="container">
+		<div class="row">
+			<div class="col">
+				<a href="../../challenges.html"> ← Volver </a>
+			</div>
+			<div class="col">
+				<div class="d-flex flex-row-reverse">
+					<ul class="social-network social-circle"> <!-- thanks to https://codepen.io/NamiqNamaz/pen/QZYyEq --> 		<li>
+							<a href="https://github.com/migue27au" class="icoGithub" title="Facebook"><i class="fa fa-github" style="color: white;"></i></a>
+						</li>
+						<li>
+							<a href="https://www.linkedin.com/in/migue-ure%C3%B1a-716b61127/" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin" style="color: white;"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
+
+
+	
