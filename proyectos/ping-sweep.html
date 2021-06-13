@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>C1b3r_F0lio</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Boostrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	<!-- footer -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/footer.css">
+
+</head>
+<body class="bg-dark">
+
+
+	<header>
+		<div> <!--navbar -->
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="index.html">C1b3r_F0lio</a>
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../challenges.html">Challenges</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../proyectos.html">Proyectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../logros.html">Logros</a>
+                    </li>
+                </ul>
+			</div>
+		</nav>
+		</div>
+		<div> <!--background image -->
+			<img src="../images/background.gif" class="img-fluid" alt="Responsive image">
+		</div>
+	</header>
+	<br/>
+	<main class="container bg-dark text-white">
+        
+        <div class="row">
+            <div class="col">
+    		  <h1 class="display-4">Ping-Sweep</h1>
+            </div>
+            <div class="col d-flex flex-row-reverse">
+                 <h5 class="text-secondary">31 mayo 2021</h5>
+            </div>
+		</div>
+
+		<p>Ping-Sweep es una herramienta un poco más compleja a las realizadas hasta la fecha. Esta herramienta, como su nombre indica, realiza un barrido de ping de una red dada una dirección y una máscara de red en formato CIDR.</p>
+        <p>La motivación del desarrollo de esta herramienta se debe que las máquinas virtuales CTF de la plataforma <a href="https://hackmyvm.eu/">HackMyVM</a> deben descargarse y ejecutarse en una máquina anfitrión. Por tanto es necesario encontrar la dirección IP de la máquina para poder empezar con el CTF y en mi caso no puedo utilizar un escaneo de ARP como el realizado con la herramienta arp-scan debido a que despliego las máquinas en una red distinta a la red local. Esto es así porque los paquetes ARP no pueden atravesar redes ya que ARP es un protocolo de nivel 2.</p>
+
+		<p>La herramienta está desarrollada en Python3 y publicada en Github para que pueda ser fácilmente descargable por cualquier usuario. Además, cuenta con un modo de reconocimiento de SO basado en TTL como el de la herramienta <a href="findos.html">Findos</a>. Su uso se explica con el siguiente ejemplo:</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/proyectos/ping-sweep/1.png" alt="" class="img-fluid">
+		</div>
+
+		<p>El código de la herramienta es el siguiente:</p>
+            <div class="border border-info">
+                <div class=" mt-3 ml-4">
+                    <code><pre class="text-white">
+#!/usr/bin/python3
+
+import subprocess, sys, re
+import socket, struct
+import threading
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+solaris_ttl = 254
+windows_ttl = 128
+linux_ttl = 64
+
+usage = "Usage: ping-sweep &lt;IPv4 address&gt;/&lt;netmask&gt; [options]\n    Use ping-sweep -h to see help."
+help_usage = usage.split("\n")[0] + "\n    Example: ping-sweep 192.168.0.1/24\n    Options:\n\t-T=&lt;0-5&gt;\tTimeout. Higher number means faster but may cause undetections.\n\t-v\tVerbose.\n\t-O\tOS discovery (TTL).\n\t-o=&lt;file&gt;\tSave output in file."
+cidr_pattern = re.compile("^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\/\d{1,2}$")
+
+
+
+def variables_definition(argv):
+    global os_detection, verbose, timeout, network, bits, netmask, num_hosts, out_file_name, out_file 
+    global threads, hosts_up
+    threads = []
+    hosts_up = []
+    try:
+        os_detection = False
+        verbose = False
+        timeout = 5
+        out_file_name = ""
+        cidr = argv[0]
+        if len(argv) > 1:
+            argv = argv[1:]
+            for arg in argv:                
+                if "-v" in arg:
+                    verbose = True
+                elif "-T" in arg:
+                    if len(arg) == 4 and "=" in arg:
+                        arg = arg.split("=")[1]
+                        if arg == '0':
+                            timeout = 5
+                        elif arg == '1':
+                            timeout = 2
+                        elif arg == '2':
+                            timeout = 1
+                        elif arg == '3':
+                            timeout = 0.2
+                        elif arg == '4':
+                            timeout = 0.1
+                        elif arg == '5':
+                            timeout = 0.05
+                        else:
+                            print(bcolors.WARNING + "[!] " + bcolors.ENDC + usage)
+                            exit(1)
+                    else:
+                        print(bcolors.WARNING + "[!] " + bcolors.ENDC + usage)
+                        exit(1)
+                elif "-O" in arg:
+                    os_detection = True
+                elif "-o" in arg:
+                    if len(arg) > 3 and "=" in arg:
+                        out_file_name = arg.split("=")[1]
+                        out_file = open(out_file_name, "w")
+                    else:
+                        print(bcolors.WARNING + "[!] " + bcolors.ENDC + usage)
+                        exit(1)
+                else:
+                    print(bcolors.WARNING + "[!] " + bcolors.ENDC + usage)
+                    exit(1)
+
+        cidr_match = cidr_pattern.match(cidr)
+        if cidr_match == False:
+            print(bcolors.WARNING + "[!] " + bcolors.ENDC + usage)
+            exit(1)
+
+        network, bits = cidr.split('/')
+        netmask = socket.inet_ntoa(struct.pack('!I', (1 << 32) - (1 << (32-int(bits)))))
+        
+        network = [int(x) for x in network.split(".")]
+        netmask = [int(x) for x in netmask.split(".")]
+        num_hosts = pow(2, 32-int(bits))
+        for i in range(len(network)):
+            network[i] = network[i]&netmask[i]
+    except ValueError:
+        print(bcolors.WARNING + "[!] " + bcolors.ENDC + usage)
+        exit(1)
+
+def send_icmp_echo(target_ip):
+    target_ip = str(target_ip[0])+"."+str(target_ip[1])+"."+str(target_ip[2])+"."+str(target_ip[3])
+    #print(target_ip)
+    cmd = "timeout " + str(timeout) + " bash -c \"ping " + target_ip + " | head -n2 | tail -n1 | cut -d ' ' -f 6 | cut -d '=' -f 2\""
+    ttl = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if len(str(ttl.stdout)) > 3 and "Unreachable" not in str(ttl.stdout) and "0 received" not in str(ttl.stdout):
+        ttl = int(str(ttl.stdout)[2:-3])
+        if os_detection == True:
+            hosts_up.append([target_ip, ttl])
+        else:
+            hosts_up.append(target_ip)
+        if verbose == True:
+            if os_detection == True:
+                print(bcolors.OKCYAN + "[v]" + bcolors.ENDC + "\tHost up: " + target_ip + bcolors.OKBLUE + " - " + bcolors.ENDC + str(ttl))
+            else:
+                print(bcolors.OKCYAN + "[v]" + bcolors.ENDC + "\tHost up: " + target_ip)
+
+
+def sort_key(item):
+    sort_string = ""
+    if  isinstance(item, str):
+        sort_string = item
+    else:
+        sort_string = str(item[0])
+    sort_string = [int(x) for x in sort_string.split(".")]
+
+    return(sort_string)
+
+def show_output():
+    hosts_up.sort(key=sort_key)
+    for host in hosts_up:
+        if os_detection == False:
+            print(bcolors.OKGREEN + "[+] " + bcolors.ENDC + host + bcolors.OKGREEN)
+        else:
+            ttl = host[1]
+            if ttl > solaris_ttl:
+                print(bcolors.OKGREEN + "[+] " + bcolors.ENDC + host[0] + bcolors.OKBLUE + " - " + bcolors.ENDC +"unknown")
+            if ttl > windows_ttl and ttl <= solaris_ttl:
+                print(bcolors.OKGREEN + "[+] " + bcolors.ENDC + host[0] + bcolors.OKBLUE + " - " + bcolors.ENDC +"solaris")
+            elif ttl > linux_ttl and ttl <= windows_ttl:
+                print(bcolors.OKGREEN + "[+] " + bcolors.ENDC + host[0] + bcolors.OKBLUE + " - " + bcolors.ENDC + "windows")
+            elif ttl <= linux_ttl:
+                print(bcolors.OKGREEN + "[+] " + bcolors.ENDC + host[0] + bcolors.OKBLUE + " - " + bcolors.ENDC + "linux")
+
+def main(argv):
+    try:
+        variables_definition(argv)
+
+        if verbose:
+            print(bcolors.OKCYAN + "[v]" + bcolors.ENDC + " network -> " + str(network[0]) + "." + str(network[1]) + "." + str(network[2]) + "." + str(network[3]))
+            print(bcolors.OKCYAN + "[v]" + bcolors.ENDC + " netmask -> " + str(netmask[0]) + "." + str(netmask[1]) + "." + str(netmask[2]) + "." + str(netmask[3]))
+            print(bcolors.OKCYAN + "[v]" + bcolors.ENDC + " hosts to scan ->", num_hosts)
+            print(bcolors.OKCYAN + "[v]" + bcolors.ENDC + " Scan started...")
+
+        hosts = [0,0,0,0]
+        for i in range(num_hosts):
+            
+            target_ip = [network[0]+hosts[0], network[1]+hosts[1], network[2]+hosts[2], network[3]+hosts[3]]
+            string = "thread-"+str(i)
+            t = threading.Thread(target=send_icmp_echo, args=(target_ip, ))
+            threads.append(t)
+            t.start()
+            if hosts[3] < 255:
+                hosts[3] += 1
+            else:
+                hosts[3] = 0
+                if hosts[2] < 255:
+                    hosts[2] += 1
+                else:
+                    hosts[2] = 0
+                    if hosts[1] < 255:
+                        hosts[1] += 1
+                    else:
+                        hosts[1] = 0
+                        if hosts[0] < 255:
+                            hosts[0] += 1
+
+        #wait for all threads to finish
+        for i in range(len(threads)):
+            threads[i].join()
+        if verbose:
+            print(bcolors.OKCYAN + "[v]" + bcolors.ENDC + " Scan finished")
+        
+        show_output()
+
+        if out_file_name != "" and len(hosts_up) > 0:
+            if isinstance(hosts_up[0], str):
+                for host in hosts_up:
+                    out_file.write(host + "\n")
+            else:
+                for host in hosts_up:
+                    out_file.write(host[0] + "\n") 
+            out_file.close()
+
+    except KeyboardInterrupt:
+        print("\n"+bcolors.FAIL + "[-] " + bcolors.ENDC + "Scan stopped")
+
+if __name__ == "__main__":
+    if len(sys.argv) >= 2:
+        if "-h" in sys.argv[1]:
+            print(bcolors.HEADER + "[?] " + bcolors.ENDC + help_usage)
+            exit(1)
+        main(sys.argv[1:])
+    else:
+        print(bcolors.WARNING + "[!] " + bcolors.ENDC + usage)
+</pre></code></div></div>
+	</main>
+	<br/>
+	<footer class="container">
+		<div class="row">
+			<div class="col">
+				<a href="../proyectos.html"> ← Volver </a>
+			</div>
+			<div class="col">
+				<div class="d-flex flex-row-reverse">
+					<ul class="social-network social-circle"> <!-- thanks to https://codepen.io/NamiqNamaz/pen/QZYyEq --> 		<li>
+							<a href="https://github.com/migue27au" class="icoGithub" title="Facebook"><i class="fa fa-github" style="color: white;"></i></a>
+						</li>
+						<li>
+							<a href="https://www.linkedin.com/in/migue-ure%C3%B1a-716b61127/" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin" style="color: white;"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
+
+
+	

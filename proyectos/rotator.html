@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>C1b3r_F0lio</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Boostrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	<!-- footer -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/footer.css">
+
+</head>
+<body class="bg-dark">
+
+
+	<header>
+		<div> <!--navbar -->
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="index.html">C1b3r_F0lio</a>
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../challenges.html">Challenges</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../proyectos.html">Proyectos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../logros.html">Logros</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		</div>
+		<div> <!--background image -->
+			<img src="../images/background.gif" class="img-fluid" alt="Responsive image">
+		</div>
+	</header>
+	<br/>
+	<main class="container bg-dark text-white">
+		
+		<div class="row">
+            <div class="col">
+    		  <h1 class="display-4">Rotator</h1>
+            </div>
+            <div class="col d-flex flex-row-reverse">
+                 <h5 class="text-secondary">23 marzo 2021</h5>
+            </div>
+		</div>
+		
+		<p>Rotator es una herramienta sencilla para el cifrado y descifrado clásico de rotación. La motivación para desarrollar esta herramienta surgió gracias que varios CTF tenían textos cifrados en César y ROT13 que había que descifrar.</p>
+
+		<p>La herramienta está desarrollada en Python3 y publicada en Github para que pueda ser fácilmente descargable por cualquier usuario. Su uso se explica con el siguiente ejemplo:</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/proyectos/rotator/1.png" alt="" class="img-fluid">
+		</div>
+
+		<p>El código de la herramienta es el siguiente:</p>
+<div class="border border-info">
+			<div class=" mt-3 ml-4">
+					<code><pre class="text-white">
+#!/usr/bin/python3
+
+import sys, getopt
+
+spanish_alphabet_lower_case = "abcdefghijklmnñopqrstuvwxyz"
+english_alphabet_lower_case = "abcdefghijklmnopqrstuvwxyz"
+
+verbose = False
+
+help = "\t-h\t\t\tshow this help.\n\t-v\t\t\tverbose mode.\n\t-i &lt;text&gt;\t\tinput text to rotate.\n\t-I, --ifile &lt;file&gt;\tinput file to rotate.\n\t-o, --ofile &lt;file&gt;\toutput file.\n\t-r, --rotate &lt;number&gt;\tpositions to rotate.\n\t-d\t\t\tdecode text.\n\t-a, --alphabet &lt;text&gt;\tset the alphabet (spanish or english)"
+usage = "usage: python3 rotator.py -i &lt;input string&gt; -r &lt;position> -a &lt;alphabet&gt;"
+help_options = "Option not recognised. Use -h to see help."
+help_arguments = "Bad arguments. Use -h to see help."
+
+def rotateChar(character, position, alphabet, decode=False):
+    if decode == True:
+        alphabet = alphabet[::-1]
+
+    if not character in ("\n", "\r", "\0", "\t"):
+        #check if character is uppercase, then convert it to lower.
+        isUpperCase = character.isupper()
+        if isUpperCase:
+            character = character.lower()
+
+        initial_pos = alphabet.find(character)
+        if initial_pos != -1:
+            alphabet += alphabet
+            final_pos = initial_pos + int(position)
+            character = alphabet[final_pos]
+            if verbose:
+                print ("initial pos = " + str(initial_pos))
+                print ("final pos = " + str(final_pos))
+                print(character + "->" + alphabet[final_pos])
+                print("is upper case: " + str(isUpperCase))
+            #if the character was uppercase convert it to upper again
+            if isUpperCase:
+                character = character.upper()
+    return character
+
+def main(argv):
+    global verbose
+
+    input = ""
+    inputfile = ""
+    outputfile = ""
+    alphabet = ""
+    rotate = 0
+    decode = False
+
+    try:
+      opts, args = getopt.getopt(argv,"hi:I:o:a:r:dv",["ifile=","ofile=", "alphabet=","rotate=","decode="])
+    except getopt.GetoptError:
+        print(help_options)
+        sys.exit(2)
+
+    for opt, arg in opts:
+        if opt == '-h':
+            print (usage)
+            print(help)
+            sys.exit()
+        elif opt in ("-i"):
+            input = arg
+        elif opt in ("-I", "--ifile"):
+            inputfile = arg
+        elif opt in ("-o", "--ofile"):
+            outputfile = arg
+        elif opt in ("-a", "--alphabet"):
+            if arg == 'english':
+                alphabet = english_alphabet_lower_case
+            elif arg == 'spanish':
+                alphabet = spanish_alphabet_lower_case
+        elif opt in ("-r", "--rotate"):
+            rotate = arg
+        elif opt in ("-d", "--decode"):
+            decode = True
+        elif opt in ("-v"):
+            verbose = True
+
+    if rotate == 0 or len(input) != 0 and len(inputfile) != 0:
+        print(help_arguments)
+        sys.exit(1)
+
+    if len(input) != 0:    
+        string_to_rotate = input
+    else:
+        string_to_rotate = open(inputfile, 'r').read()
+    
+    if len(alphabet) == 0 or len(string_to_rotate) == 0:
+        print(help_arguments)
+        sys.exit(1)    
+    
+    rotate_string = ""
+    for character in string_to_rotate:
+        rotate_string += rotateChar(character, rotate, alphabet, decode)
+
+    if len(outputfile) == 0:
+        print (rotate_string)
+    else:
+        try:
+            f = open(outputfile, 'w')
+            f.write(rotate_string)
+            f.close()
+        except Exception as e:
+            print(e)
+
+if __name__ == '__main__':
+    main(sys.argv[1:])
+</pre></code></div></div>
+		
+	</main>
+	<br/>
+	<footer class="container">
+		<div class="row">
+			<div class="col">
+				<a href="../proyectos.html"> ← Volver </a>
+			</div>
+			<div class="col">
+				<div class="d-flex flex-row-reverse">
+					<ul class="social-network social-circle"> <!-- thanks to https://codepen.io/NamiqNamaz/pen/QZYyEq --> 		<li>
+							<a href="https://github.com/migue27au" class="icoGithub" title="Facebook"><i class="fa fa-github" style="color: white;"></i></a>
+						</li>
+						<li>
+							<a href="https://www.linkedin.com/in/migue-ure%C3%B1a-716b61127/" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin" style="color: white;"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
+
+
+	
