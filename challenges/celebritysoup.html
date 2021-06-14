@@ -16,9 +16,10 @@
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="../css/footer.css">
 
+	<!-- top button -->
+	<link rel="stylesheet" href="../css/topbutton.css">
 </head>
 <body class="bg-dark">
-
 
 	<header>
 		<div> <!--navbar -->
@@ -26,7 +27,7 @@
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<a class="navbar-brand" href="index.html">C1b3r_F0lio</a>
+			<a class="navbar-brand" href="../index.html">C1b3r_F0lio</a>
 
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -53,9 +54,16 @@
 	<br/>
 	<main class="container bg-dark text-white">
 		
-		<h1 class="display-4">CelebritySoup</h1>
+		<div class="row">
+            <div class="col col-10">
+    		  <h1 class="display-4">HackMyVM - CelebritySoup</h1>
+            </div>
+            <div class="col col-2 d-flex flex-row-reverse">
+                 <h5 class="text-secondary">23 marzo 2021</h5>
+            </div>
+		</div>
 		
-		<p>Esta máquina se encuentra en la plataforma HackMyVM y ha sido creada por el usuario <em><a href="https://shelldredd.github.io/ShellDredd/">ShellDredd</a></em>.</p>
+		<p>Esta máquina se encuentra en la plataforma <a href="https://hackmyvm.eu/">HackMyVM</a> y ha sido creada por el usuario <em><a href="https://shelldredd.github.io/ShellDredd/">ShellDredd</a></em>.</p>
 
 		<p>Es una máquina fácil tanto en la acceso como en la escalada de privilegios y sobre todo bastante entretenida.</p>
 
@@ -63,7 +71,7 @@
 		<h4 class="d-flex justify-content-center">Enumeración</h4>
 		<hr>
 
-		<p>Antes que nada será necesario conocer la dirección IP de la máquina objetivo para lo que se utilizará la herramienta <a href="https://github.com/migue27au/ping-sweep" data-type="URL" data-id="https://github.com/migue27au/ping-sweep">ping-sweep</a>.</p>
+		<p>Antes que nada será necesario conocer la dirección IP de la máquina objetivo para lo que se utilizará la herramienta <a href="https://migue27au.github.io/C1b3r_F0lio/proyectos/ping-sweep.html">ping-sweep</a>.</p>
 
 		<div class="d-flex justify-content-center">
 			<img loading="lazy" src="../images/challenges/celebritysoup/1.png" alt="" class="img-fluid">
@@ -73,7 +81,7 @@
 		<ul><li><span style="font-family: var(--list--font-family); background-color: var(--global--color-background); color: var(--global--color-primary); font-size: var(--global--font-size-base);">10.10.10.1 → Gateway</span></li><li>10.10.10.100 → Host anfitrión</li><li>10.10.10.101 → Raspberry</li><li>10.10.10.102 → Máquina objetivo</li></ul>
 
 		<p>Una vez identificada la máquina objetivo se procede a realizar la enumeración. Primero se inicia un reconocimiento del sistema operativo basado en el TTL mediante la herramienta
-			<a href="https://github.com/migue27au/OSFinder" data-type="URL">findos</a>.
+			<a href="https://migue27au.github.io/C1b3r_F0lio/proyectos/findos.html" data-type="URL">findos</a>.
 		</p>
 
 		<div class="d-flex justify-content-center">
@@ -88,7 +96,7 @@
 			<img loading="lazy" src="../images/challenges/celebritysoup/3.png" alt="" class="img-fluid">
 		</div>
 
-		<p>Como el escaneo se exporta en formato Grepable puede utilizarse la herramienta <a href="https://github.com/migue27au/get-ports" data-type="URL" data-id="https://github.com/migue27au/get-ports">get-ports</a> para copiar los puertos abiertos y pegarlos para realizar el escaneo exhaustivo.</p>
+		<p>Como el escaneo se exporta en formato Grepable puede utilizarse la herramienta <a href="https://github.com/migue27au/get-ports">get-ports</a> para copiar los puertos abiertos y pegarlos para realizar el escaneo exhaustivo.</p>
 
 		<div class="d-flex justify-content-center">
 			<img loading="lazy" src="../images/challenges/celebritysoup/4.png" alt="" class="img-fluid">
@@ -125,8 +133,8 @@
 		<p>Se crea un pequeño código en bash para obtener todos estos códigos de manera rápida y poder identificar el secreto.</p>
 
 		<div class="border border-info">
-			<div class=" mt-3 ml-4">
-					<code><pre class="text-white">
+                <div class=" mt-3 ml-4">
+                    <code><pre class="text-white">
 !/bin/bash
 secret=""
 VAR1=http://10.10.10.102/sector;
@@ -278,6 +286,28 @@ cewl "http://10.10.10.102/sector9.html" --with-numbers -w dic.txt</pre></code></
 			</div>
 		</div>
 	</footer>
+
+	<a id="topBtn" class="text-primary" onclick="toTop()"><i class="fa fa-angle-up fa-3x"></i></a>
+	<script type="text/javascript">
+		//Get the button:
+		btn = document.getElementById("topBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+		function scrollFunction() {
+			if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+				btn.style.opacity = "1";
+			} else {
+				btn.style.opacity = "0";
+			}
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function toTop() {
+			document.body.scrollTop = 0; // For Safari
+			document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		}
+	</script>
 </body>
 </html>
 

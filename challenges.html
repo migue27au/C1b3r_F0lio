@@ -16,9 +16,10 @@
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/footer.css">
 
+	<!-- top button -->
+	<link rel="stylesheet" href="../css/topbutton.css">
 </head>
 <body class="bg-dark">
-
 
 	<header>
 		<div> <!--navbar -->
@@ -60,6 +61,20 @@
 			<div class="col">
 				<div class="card bg-dark border border-info" style="width: 18rem;">
 					<h5 class="card-title d-flex justify-content-center">
+						<a href="challenges/dominator.html">HackMyVM - Dominator </a>
+					</h5>
+					<h6 class="card-subtitle d-flex justify-content-center text-muted">7 junio 2021</h6>
+					<img class="card-img-top border border-white" src="images/challenges/dominator/portada-200x200.png" alt="Card image cap" >
+					<div class="card-body">
+						<p class="card-text">Esta máquina se encuentra en la plataforma <a href="https://hackmyvm.eu/">HackMyVM</a> y ha sido creada por el usuario d4t4s3c. Esta es una de mis máquinas favoritas debido…</p>
+						<a class="d-flex flex-row-reverse" href="challenges/dominator.html"> ver más...</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="card bg-dark border border-info" style="width: 18rem;">
+					<h5 class="card-title d-flex justify-content-center">
 						<a href="challenges/celebritysoup.html">HackMyVM - CelebritySoup </a>
 					</h5>
 					<h6 class="card-subtitle d-flex justify-content-center text-muted">23 marzo 2021</h6>
@@ -70,7 +85,6 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</main>
 	<br/>
@@ -86,6 +100,28 @@
 			</ul>
 		</div>
 	</footer>
+
+	<a id="topBtn" class="text-primary" onclick="toTop()"><i class="fa fa-angle-up fa-3x"></i></a>
+	<script type="text/javascript">
+		//Get the button:
+		btn = document.getElementById("topBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+		function scrollFunction() {
+			if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+				btn.style.opacity = "1";
+			} else {
+				btn.style.opacity = "0";
+			}
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function toTop() {
+			document.body.scrollTop = 0; // For Safari
+			document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		}
+	</script>
 </body>
 </html>
 

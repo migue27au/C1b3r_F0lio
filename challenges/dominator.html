@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>C1b3r_F0lio</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Boostrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	<!-- footer -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/footer.css">
+
+	<!-- top button -->
+	<link rel="stylesheet" href="../css/topbutton.css">
+
+</head>
+<body class="bg-dark">
+
+	<header>
+		<div> <!--navbar -->
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="../index.html">C1b3r_F0lio</a>
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="../index.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../challenges.html">Challenges</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../proyectos.html">Proyectos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../logros.html">Logros</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		</div>
+		<div> <!--background image -->
+			<img src="../images/background.gif" class="img-fluid" alt="Responsive image">
+		</div>
+	</header>
+	<br/>
+	<main class="container bg-dark text-white">
+		<div class="row">
+            <div class="col col-10">
+    		  <h1 class="display-4">HackMyVM - Dominator</h1>
+            </div>
+            <div class="col col-2 d-flex flex-row-reverse">
+                 <h5 class="text-secondary">7 junio 2021</h5>
+            </div>
+		</div>
+		
+		<p>Esta máquina se encuentra en la plataforma <a href="https://hackmyvm.eu/">HackMyVM</a> y ha sido creada por el usuario <em><a href="https://d4t4s3c.medium.com/">d4t4s3c</a></em>.</p>
+
+		<p>Es una máquina fácil tanto en la acceso como en la escalada de privilegios. Esta es una de mis máquinas favoritas debido al uso de distinos protocolos, herramientas y técnicas necesarias para su explotación.</p>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Enumeración</h4>
+		<hr>
+
+		<p>Como ya se realizó en máquinas anteriores de esta plataforma el primer paso es encontrar la dirección IP, para ello se utiliza la herramienta <a href="https://migue27au.github.io/C1b3r_F0lio/proyectos/ping-sweep.html" data-type="URL" data-id="https://github.com/migue27au/ping-sweep">ping-sweep</a>.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/dominator/1.png" alt="" class="img-fluid">
+		</div>
+
+		<p>La herramienta ha detectado 4 IP:</p>
+		<ul>
+			<li>>10.10.10.1 → Gateway</li>
+			<li>10.10.10.100 → Host anfitrión</li>
+			<li>10.10.10.101 → Máquina objetivo</li>
+			<li>10.10.10.103 → Raspberry</li>
+		</ul>
+		<p>Una vez encontrada la IP se utiliza la herramienta <a href="https://migue27au.github.io/C1b3r_F0lio/proyectos/findos.html">findos</a> para averiguar el sistema operativo mediante una única traza ICMP.</p>
+		
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/dominator/2.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Como indica la herramienta el SO de la máquina Dominator es un linux. A continuación se procede a realizar la enumeración de los puertos.</p>
+		<p>Se empieza primero con un escaneo rápido para encontrar los puertos puertos abiertos.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/dominator/3.png" alt="" class="img-fluid">
+		</div>
+
+		<p>A continuación, se realiza un escaneo más profundo de los servicios que corren en los puertos abiertos y se ejecutan una serie de scripts básicos. Para obtener los puertos de manera más fácil se utiliza la herramienta <a href="https://github.com/migue27au/get-ports">get-ports</a>.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/dominator/4.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Tras el escaneo se han detectado tres puertos abiertos 53 → DNS, 80 → HTTP, 65222 → SSH.</p>
+		<p>El servicio DNS puede ser vulnerable a una transferencia de zona que desvele subdominios para una posterior enumeración de HTTP, por este motivo primero se intenta realizar una transferencia de zona.</p>
+		<p>Para ello será necesario modificar el fichero /etc/hosts e incluir la dirección IP y nombre de dominio para la máquina.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/dominator/5.png" alt="" class="img-fluid">
+		</div>
+
+		<p>A continuación se ejecuta la petición de transferencia de zona con la herramienta dig:</p>
+		<div class="border border-info">
+                <div class=" mt-3 ml-4">
+                    <code><pre class="text-white">
+dig axfr @10.10.10.101 dominator.hmv
+</pre></code></div></div>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/dominator/6.png" alt="" class="img-fluid">
+		</div>
+
+		<p>La transferencia de zona ha encontrado un par de subdominios interesantes → secret.dominator.hmv, admin.dominator.hmv. También llama la atención que el subdominio secret tiene asociado el recurso /fhcrefrperg. Tras esto se agregan los subdominios al fichero /etc/hosts.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/dominator/7.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Como del subdominio secret ya se conoce el recurso /fhcrefrperg se empieza la enumeración de HTTP por aquí.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/dominator/8.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Como se puede ver en la captura anterior, el recurso /fhcrefrperg no existe. Tras un buen rato de probar distintas cosas y reiniciar la máquina por si el servicio HTTP no se hubiese ejecutado correctamente me doy cuenta que el nombre del recurso está cifrado. A primera vista parece que es un cifrado de bloque por lo que para descifrarlo realizo un simple script en bash que ejecute la herramienta <a href="https://migue27au.github.io/C1b3r_F0lio/proyectos/rotator.html">Rotator</a> y probar todas las posibles combinaciones.</p>
+		<p>El script es el siguiente:</p>
+
+		<div class="border border-info">
+                <div class=" mt-3 ml-4">
+                    <code><pre class="text-white">
+#!/bin/bash
+cipher_text=$1
+for i in {0..25}; do
+	plain_text=$(/opt/my-scripts/rotator/rotator -i $cipher_text -dr $i -a english)
+	echo " $i posiciones -> $plain_text"
+done
+</pre></code></div></div>
+	
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/dominator/9.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Tras la ejecución del script se descubre que al descifrar rotando 13 posiciones se obtiene el texto plano "supersecret", es decir, el texto estaba cifrado con un ROT13. Una vez descifrado se comprueba si el recurso /supersecret existe.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/dominator/10.png" alt="" class="img-fluid">
+		</div>
+
+		<p>¡Bien! El recurso existe y además se indexa el recurso hans_key, que resulta ser la clave privada de un usuario llamado hans.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/dominator/11.png" alt="" class="img-fluid">
+		</div>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Ganar acceso</h4>
+		<hr>
+
+
+		<p>Sin embargo, la clave privada está cifrada pero con un poco de suerte será una clave poco segura que aparezca en rockyou. Lo primero será descargar la clave privada cifrada con wget.</p>
+
+		<div class="border border-info">
+                <div class=" mt-3 ml-4">
+                    <code><pre class="text-white">
+wget http://secret.dominator.hmv/supersecret/hans_key
+</pre></code></div></div>
+
+		<p>Una vez descargada hay que obtener el hash de la clave privada para crackearla. Para ello utilizaré la herramienta <a href="https://github.com/openwall/john/blob/bleeding-jumbo/run/ssh2john.py">ssh2john</a>.</p>
+		
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/dominator/12.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Una vez obtenido el hash se utiliza JohnTheRipper para crackearlo</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/dominator/13.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Es el momento de darle las gracias a Hans por utilizar una clave poco segura como lo es "angels" y dejarnos continuar realizando el CTF.</p>
+		<p>Ahora nos conectamos al servicio SSH del puerto 65222 usando como usuario hans y proporcionando la clave privada. No hay problema con que nos pida la contraseña porque ya se sabe que es "angels".</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/dominator/14.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Perfecto, ya se ha conseguido el acceso a la máquina y se podrá obtener la flag del user.</p>
+		<p>Sin embargo, no existe un user.txt en el directorio de hans. Pero sí hay un fichero de texto llamado note que informa que la flag está en la papelera o no.</p>
+
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/dominator/15.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Para encontrar la flag se realiza una búsqueda de un archivo user.txt partiendo de la raíz del sistema.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/dominator/16.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Una vez encontrada la flag se visualiza y se añade a la plataforma de HackMyVM.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/dominator/17.png" alt="" class="img-fluid">
+		</div>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Escalada de privilegios</h4>
+		<hr>
+
+		<p>La escalada de privilegios se inicia viendo si se tienen permisos de sudo o SUID. Hans no puede ejecutar sudo pero sí se han encontrado una serie de binarios que tienen permisos SUID.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/dominator/18.png" alt="" class="img-fluid">
+		</div>
+
+		<p>De todos los binarios el más interesante para la escalada de privilegios es systemctl. Ya que puede crearse un servicio malicioso que nos permita conseguir el root, para hacerlo se busca en la web <a href="https://gtfobins.github.io/">https://gtfobins.github.io/</a> una escalada de privilegios para systemctl.</p>
+		<p>Basándose en la información de la página se crea el siguiente ejecutable malicioso y se ejecuta. Este ejecutable lo que realiza es establecer permiso de SUID a /usr/bin/bash y poder conseguir así una bash privilegiada.</p>
+		<div class="border border-info">
+                <div class=" mt-3 ml-4">
+                    <code><pre class="text-white">
+#!/bin/bash
+install -m =xs $(which systemctl) .
+
+TF=$(mktemp).service
+echo '[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "chmod +s /bin/bash"
+[Install]
+WantedBy=multi-user.target' > $TF
+/usr/bin/systemctl link $TF
+/usr/bin/systemctl enable --now $TF
+</pre></code></div></div>
+
+		
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/dominator/19.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Finalmente se obtiene una bash privilegiada y se obtiene la flag de root</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/dominator/20.png" alt="" class="img-fluid">
+		</div>
+
+			
+
+	</main>
+	<br/>
+	<footer class="container">
+		<div class="row">
+			<div class="col">
+				<a href="../challenges.html"> ← Volver </a>
+			</div>
+			<div class="col">
+				<div class="d-flex flex-row-reverse">
+					<ul class="social-network social-circle"> <!-- thanks to https://codepen.io/NamiqNamaz/pen/QZYyEq --> 		<li>
+							<a href="https://github.com/migue27au" class="icoGithub" title="Facebook"><i class="fa fa-github" style="color: white;"></i></a>
+						</li>
+						<li>
+							<a href="https://www.linkedin.com/in/migue-ure%C3%B1a-716b61127/" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin" style="color: white;"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+	<a id="topBtn" class="text-primary" onclick="toTop()"><i class="fa fa-angle-up fa-3x"></i></a>
+	<script type="text/javascript">
+		//Get the button:
+		btn = document.getElementById("topBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+		function scrollFunction() {
+			if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+				btn.style.opacity = "1";
+			} else {
+				btn.style.opacity = "0";
+			}
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function toTop() {
+			document.body.scrollTop = 0; // For Safari
+			document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		}
+	</script>
+
+</body>
+</html>
+
+
+	

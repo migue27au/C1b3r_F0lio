@@ -16,6 +16,8 @@
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="../css/footer.css">
 
+    <!-- top button -->
+    <link rel="stylesheet" href="../css/topbutton.css">
 </head>
 <body class="bg-dark">
 
@@ -26,7 +28,7 @@
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<a class="navbar-brand" href="index.html">C1b3r_F0lio</a>
+			<a class="navbar-brand" href="../index.html">C1b3r_F0lio</a>
 
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -54,15 +56,15 @@
 	<main class="container bg-dark text-white">
         
         <div class="row">
-            <div class="col">
+            <div class="col col-10">
     		  <h1 class="display-4">Ping-Sweep</h1>
             </div>
-            <div class="col d-flex flex-row-reverse">
+            <div class="col col-2 d-flex flex-row-reverse">
                  <h5 class="text-secondary">31 mayo 2021</h5>
             </div>
 		</div>
 
-		<p>Ping-Sweep es una herramienta un poco más compleja a las realizadas hasta la fecha. Esta herramienta, como su nombre indica, realiza un barrido de ping de una red dada una dirección y una máscara de red en formato CIDR.</p>
+		<p><a href="https://github.com/migue27au/ping-sweep">Ping-Sweep</a> es una herramienta un poco más compleja a las realizadas hasta la fecha. Esta herramienta, como su nombre indica, realiza un barrido de ping de una red dada una dirección y una máscara de red en formato CIDR.</p>
         <p>La motivación del desarrollo de esta herramienta se debe que las máquinas virtuales CTF de la plataforma <a href="https://hackmyvm.eu/">HackMyVM</a> deben descargarse y ejecutarse en una máquina anfitrión. Por tanto es necesario encontrar la dirección IP de la máquina para poder empezar con el CTF y en mi caso no puedo utilizar un escaneo de ARP como el realizado con la herramienta arp-scan debido a que despliego las máquinas en una red distinta a la red local. Esto es así porque los paquetes ARP no pueden atravesar redes ya que ARP es un protocolo de nivel 2.</p>
 
 		<p>La herramienta está desarrollada en Python3 y publicada en Github para que pueda ser fácilmente descargable por cualquier usuario. Además, cuenta con un modo de reconocimiento de SO basado en TTL como el de la herramienta <a href="findos.html">Findos</a>. Su uso se explica con el siguiente ejemplo:</p>
@@ -295,6 +297,28 @@ if __name__ == "__main__":
 			</div>
 		</div>
 	</footer>
+
+    <a id="topBtn" class="text-primary" onclick="toTop()"><i class="fa fa-angle-up fa-3x"></i></a>
+    <script type="text/javascript">
+        //Get the button:
+        btn = document.getElementById("topBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+        function scrollFunction() {
+            if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+                btn.style.opacity = "1";
+            } else {
+                btn.style.opacity = "0";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function toTop() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+    </script>
 </body>
 </html>
 
