@@ -74,7 +74,7 @@
 		<p>Como ya se realizó en máquinas anteriores de esta plataforma el primer paso es encontrar la dirección IP, para ello se utiliza la herramienta <a href="https://migue27au.github.io/C1b3r_F0lio/proyectos/ping-sweep.html" data-type="URL" data-id="https://github.com/migue27au/ping-sweep">ping-sweep</a>.</p>
 
 		<div class="d-flex justify-content-center">
-			<img loading="lazy" src="../images/challenges/dominator/1.png" alt="" class="img-fluid">
+			<img loading="lazy" src="../images/challenges/dominator/1.png" alt="error loading image :(" class="img-fluid">
 		</div>
 
 		<p>La herramienta ha detectado 4 IP:</p>
@@ -87,20 +87,20 @@
 		<p>Una vez encontrada la IP se utiliza la herramienta <a href="https://migue27au.github.io/C1b3r_F0lio/proyectos/findos.html">findos</a> para averiguar el sistema operativo mediante una única traza ICMP.</p>
 		
 		<div class="d-flex justify-content-center">
-			<img loading="lazy" src="../images/challenges/dominator/2.png" alt="" class="img-fluid">
+			<img loading="lazy" src="../images/challenges/dominator/2.png" alt="error loading image :(" class="img-fluid">
 		</div>
 
 		<p>Como indica la herramienta el SO de la máquina Dominator es un linux. A continuación se procede a realizar la enumeración de los puertos.</p>
 		<p>Se empieza primero con un escaneo rápido para encontrar los puertos puertos abiertos.</p>
 
 		<div class="d-flex justify-content-center">
-			<img loading="lazy" src="../images/challenges/dominator/3.png" alt="" class="img-fluid">
+			<img loading="lazy" src="../images/challenges/dominator/3.png" alt="error loading image :(" class="img-fluid">
 		</div>
 
 		<p>A continuación, se realiza un escaneo más profundo de los servicios que corren en los puertos abiertos y se ejecutan una serie de scripts básicos. Para obtener los puertos de manera más fácil se utiliza la herramienta <a href="https://github.com/migue27au/get-ports">get-ports</a>.</p>
 
 		<div class="d-flex justify-content-center">
-			<img loading="lazy" src="../images/challenges/dominator/4.png" alt="" class="img-fluid">
+			<img loading="lazy" src="../images/challenges/dominator/4.png" alt="error loading image :(" class="img-fluid">
 		</div>
 
 		<p>Tras el escaneo se han detectado tres puertos abiertos 53 → DNS, 80 → HTTP, 65222 → SSH.</p>
@@ -108,7 +108,7 @@
 		<p>Para ello será necesario modificar el fichero /etc/hosts e incluir la dirección IP y nombre de dominio para la máquina.</p>
 
 		<div class="d-flex justify-content-center">
-			<img loading="lazy" src="../images/challenges/dominator/5.png" alt="" class="img-fluid">
+			<img loading="lazy" src="../images/challenges/dominator/5.png" alt="error loading image :(" class="img-fluid">
 		</div>
 
 		<p>A continuación se ejecuta la petición de transferencia de zona con la herramienta dig:</p>
@@ -119,19 +119,19 @@ dig axfr @10.10.10.101 dominator.hmv
 </pre></code></div></div>
 
 		<div class="d-flex justify-content-center">
-			<img loading="lazy" src="../images/challenges/dominator/6.png" alt="" class="img-fluid">
+			<img loading="lazy" src="../images/challenges/dominator/6.png" alt="error loading image :(" class="img-fluid">
 		</div>
 
 		<p>La transferencia de zona ha encontrado un par de subdominios interesantes → secret.dominator.hmv, admin.dominator.hmv. También llama la atención que el subdominio secret tiene asociado el recurso /fhcrefrperg. Tras esto se agregan los subdominios al fichero /etc/hosts.</p>
 
 		<div class="d-flex justify-content-center">
-			<img loading="lazy" src="../images/challenges/dominator/7.png" alt="" class="img-fluid">
+			<img loading="lazy" src="../images/challenges/dominator/7.png" alt="error loading image :(" class="img-fluid">
 		</div>
 
 		<p>Como del subdominio secret ya se conoce el recurso /fhcrefrperg se empieza la enumeración de HTTP por aquí.</p>
 
 		<div class="d-flex justify-content-center">
-			<img loading="lazy" src="../images/challenges/dominator/8.png" alt="" class="img-fluid">
+			<img loading="lazy" src="../images/challenges/dominator/8.png" alt="error loading image :(" class="img-fluid">
 		</div>
 
 		<p>Como se puede ver en la captura anterior, el recurso /fhcrefrperg no existe. Tras un buen rato de probar distintas cosas y reiniciar la máquina por si el servicio HTTP no se hubiese ejecutado correctamente me doy cuenta que el nombre del recurso está cifrado. A primera vista parece que es un cifrado de bloque por lo que para descifrarlo realizo un simple script en bash que ejecute la herramienta <a href="https://migue27au.github.io/C1b3r_F0lio/proyectos/rotator.html">Rotator</a> y probar todas las posibles combinaciones.</p>
@@ -149,19 +149,19 @@ done
 </pre></code></div></div>
 	
 		<div class="d-flex justify-content-center">
-			<img loading="lazy" src="../images/challenges/dominator/9.png" alt="" class="img-fluid">
+			<img loading="lazy" src="../images/challenges/dominator/9.png" alt="error loading image :(" class="img-fluid">
 		</div>
 
 		<p>Tras la ejecución del script se descubre que al descifrar rotando 13 posiciones se obtiene el texto plano "supersecret", es decir, el texto estaba cifrado con un ROT13. Una vez descifrado se comprueba si el recurso /supersecret existe.</p>
 
 		<div class="d-flex justify-content-center">
-			<img loading="lazy" src="../images/challenges/dominator/10.png" alt="" class="img-fluid">
+			<img loading="lazy" src="../images/challenges/dominator/10.png" alt="error loading image :(" class="img-fluid">
 		</div>
 
 		<p>¡Bien! El recurso existe y además se indexa el recurso hans_key, que resulta ser la clave privada de un usuario llamado hans.</p>
 
 		<div class="d-flex justify-content-center">
-			<img loading="lazy" src="../images/challenges/dominator/11.png" alt="" class="img-fluid">
+			<img loading="lazy" src="../images/challenges/dominator/11.png" alt="error loading image :(" class="img-fluid">
 		</div>
 
 		<hr>
@@ -180,20 +180,20 @@ wget http://secret.dominator.hmv/supersecret/hans_key
 		<p>Una vez descargada hay que obtener el hash de la clave privada para crackearla. Para ello utilizaré la herramienta <a href="https://github.com/openwall/john/blob/bleeding-jumbo/run/ssh2john.py">ssh2john</a>.</p>
 		
 		<div class="d-flex justify-content-center">
-			<img loading="lazy" src="../images/challenges/dominator/12.png" alt="" class="img-fluid">
+			<img loading="lazy" src="../images/challenges/dominator/12.png" alt="error loading image :(" class="img-fluid">
 		</div>
 
 		<p>Una vez obtenido el hash se utiliza JohnTheRipper para crackearlo</p>
 
 		<div class="d-flex justify-content-center">
-			<img loading="lazy" src="../images/challenges/dominator/13.png" alt="" class="img-fluid">
+			<img loading="lazy" src="../images/challenges/dominator/13.png" alt="error loading image :(" class="img-fluid">
 		</div>
 
 		<p>Es el momento de darle las gracias a Hans por utilizar una clave poco segura como lo es "angels" y dejarnos continuar realizando el CTF.</p>
 		<p>Ahora nos conectamos al servicio SSH del puerto 65222 usando como usuario hans y proporcionando la clave privada. No hay problema con que nos pida la contraseña porque ya se sabe que es "angels".</p>
 
 		<div class="d-flex justify-content-center">
-			<img loading="lazy" src="../images/challenges/dominator/14.png" alt="" class="img-fluid">
+			<img loading="lazy" src="../images/challenges/dominator/14.png" alt="error loading image :(" class="img-fluid">
 		</div>
 
 		<p>Perfecto, ya se ha conseguido el acceso a la máquina y se podrá obtener la flag del user.</p>
@@ -201,19 +201,19 @@ wget http://secret.dominator.hmv/supersecret/hans_key
 
 
 		<div class="d-flex justify-content-center">
-			<img loading="lazy" src="../images/challenges/dominator/15.png" alt="" class="img-fluid">
+			<img loading="lazy" src="../images/challenges/dominator/15.png" alt="error loading image :(" class="img-fluid">
 		</div>
 
 		<p>Para encontrar la flag se realiza una búsqueda de un archivo user.txt partiendo de la raíz del sistema.</p>
 
 		<div class="d-flex justify-content-center">
-			<img loading="lazy" src="../images/challenges/dominator/16.png" alt="" class="img-fluid">
+			<img loading="lazy" src="../images/challenges/dominator/16.png" alt="error loading image :(" class="img-fluid">
 		</div>
 
 		<p>Una vez encontrada la flag se visualiza y se añade a la plataforma de HackMyVM.</p>
 
 		<div class="d-flex justify-content-center">
-			<img loading="lazy" src="../images/challenges/dominator/17.png" alt="" class="img-fluid">
+			<img loading="lazy" src="../images/challenges/dominator/17.png" alt="error loading image :(" class="img-fluid">
 		</div>
 
 		<hr>
@@ -223,7 +223,7 @@ wget http://secret.dominator.hmv/supersecret/hans_key
 		<p>La escalada de privilegios se inicia viendo si se tienen permisos de sudo o SUID. Hans no puede ejecutar sudo pero sí se han encontrado una serie de binarios que tienen permisos SUID.</p>
 
 		<div class="d-flex justify-content-center">
-			<img loading="lazy" src="../images/challenges/dominator/18.png" alt="" class="img-fluid">
+			<img loading="lazy" src="../images/challenges/dominator/18.png" alt="error loading image :(" class="img-fluid">
 		</div>
 
 		<p>De todos los binarios el más interesante para la escalada de privilegios es systemctl. Ya que puede crearse un servicio malicioso que nos permita conseguir el root, para hacerlo se busca en la web <a href="https://gtfobins.github.io/">https://gtfobins.github.io/</a> una escalada de privilegios para systemctl.</p>
@@ -246,12 +246,12 @@ WantedBy=multi-user.target' > $TF
 
 		
 		<div class="d-flex justify-content-center">
-			<img loading="lazy" src="../images/challenges/dominator/19.png" alt="" class="img-fluid">
+			<img loading="lazy" src="../images/challenges/dominator/19.png" alt="error loading image :(" class="img-fluid">
 		</div>
 
 		<p>Finalmente se obtiene una bash privilegiada y se obtiene la flag de root</p>
 		<div class="d-flex justify-content-center">
-			<img loading="lazy" src="../images/challenges/dominator/20.png" alt="" class="img-fluid">
+			<img loading="lazy" src="../images/challenges/dominator/20.png" alt="error loading image :(" class="img-fluid">
 		</div>
 
 			
