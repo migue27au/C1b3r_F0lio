@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>C1b3r_F0lio</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Boostrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	<!-- footer -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/footer.css">
+
+	<!-- top button -->
+	<link rel="stylesheet" href="../css/topbutton.css">
+
+</head>
+<body class="bg-dark">
+
+	<header>
+		<div> <!--navbar -->
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="../index.html">C1b3r_F0lio</a>
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="../index.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../challenges.html">Challenges</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../proyectos.html">Proyectos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../logros.html">Logros</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		</div>
+		<div> <!--background image -->
+			<img src="../images/background.gif" class="img-fluid" alt="Responsive image">
+		</div>
+	</header>
+	<br/>
+	<main class="container bg-dark text-white">
+		<div class="row">
+            <div class="col col-10">
+    		  <h1 class="display-4">HackMyVM - Dominator</h1>
+            </div>
+            <div class="col col-2 d-flex flex-row-reverse">
+                 <h5 class="text-secondary">1 junio 2021</h5>
+            </div>
+		</div>
+		
+		<div class="row">
+			<div class="col">
+				<p>Esta máquina se encuentra en la plataforma <a href="https://hackmyvm.eu/">HackMyVM</a> y ha sido creada por el usuario <em><a href="https://d4t4s3c.medium.com/">d4t4s3c</a></em>.</p>
+				<p>Es una máquina poco realista en el acceso pero muy original y entretenida en la escalada de privilegios.</p>
+			</div>
+			<div class="col">
+				<table class="table">
+				  <thead>
+				    <tr class="bg-secondary">
+				      <th scope="col">#</th>
+				      <th scope="col">Dificultad</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <th scope="row">Acceso</th>
+				      <td class="text-success">Fácil</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Escalada de privilegios</th>
+				      <td class="text-success">Fácil-Medio</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Enumeración</h4>
+		<hr>
+
+		<p>La enumeración comienza detectando la dirección IP de la máquina. Para ello se utiliza la herramienta arp-scan, hay que tener en cuenta que la máquina víctima debe estar en la misma red que la máquina del atacante.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/brain/1.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>La herramienta ha detectado 4 IP:</p>
+		<ul>
+			<li>10.10.10.1 → Gateway</li>
+			<li>10.10.10.102 → Host anfitrión</li>
+			<li>10.10.10.100 → Raspberry</li>
+			<li>10.10.10.101 → Máquina objetivo</li>
+		</ul>
+
+		<p>Una vez identificada la máquina objetivo se realiza el escaneo de puetos como es usual. Primero un escaneo rápido y posteriormente un escaneo más profundo para detectar los servidos que corren en los puertos abiertos.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/brain/2.png" alt="error loading image :(" class="img-fluid">
+		</div>
+		<br/>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/brain/3.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>El escaneo ha encontrado dos puertos abiertos el de HTTP y el de SSH. A continuación se utiliza whatweb para desvelar más del servicio HTTP</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/brain/4.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Según ha desvelado whatweb, el servicio HTTP es la página por defecto de Apache httpd. Probablemente exista algún directorio oculto por lo que se procede a hacer fuzzing con la herramienta wfuzz con el diccionario "medium" de dirbuster para encontrarlos. </p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/brain/5.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Se ha encontrado un nuevo directorio llamado "brainstorm".</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/brain/6.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Se vuelve a hacer fuzzing en este directorio utilizando los diccionarios common y extension_common de wfuzz.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/brain/7.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Se ha encontrado un nuevo recurso, file.php. Según el nombre del recurso se piensa que puede tratarse de un archivo para mostrar archivo del sistema, es decir, un LFI. Se prueba con distintos parámetros en la URL hasta encontrar el que permite el LFI.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/brain/8.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Conseguir acceso</h4>
+		<hr>
+
+		<p>En un primer momento se pensó por un log poisoning pero al no avanzar por esta vía se cambió la táctica a buscar credenciales en archivos de configuración y otros archivos del sitema. Tras un buen rato de búsqueda se encuentran las credenciales salomon:MyBr4iN al consultar los procesos en ejecución del sistema (/proc/sched_debug).</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/brain/9.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Se utilizan estas credenciales para acceder al sistema a través del servicio SSH.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/brain/10.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Siendo usuario en la máquina ya puede consultarse la flag de user.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/brain/11.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Escalada de privilegios.</h4>
+		<hr>
+
+		<p>Después de no detectar una vía sencilla de escalar privilegios consultado los permisos del usuario salomon se hace una consulta de los puertos abiertos internamente en la máquina detectando un servicio TCP en el puerto 65000.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/brain/12.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Al ser un servicio TCP puede utilizarse telnet para conectarse y realizar un banner-grabbing para detectar el servicio que está corriendo.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/brain/13.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Gracias al banner grabbing se detecta que es un servicio HTTP. Por lo que utilizando telnet otra vez se contruye una petición GET básica y se envía.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/brain/14.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>La respuesta del servidor a la petición GET contiene lo que parece ser un hash SHA512. Pero para comprobarlo se utiliza la herramienta hash-id.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/brain/15.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Al tratarse de un hash sin salt puede romperse fácilmente desde <a href="https://crackstation.net/">crackstation</a>.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/brain/16.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>El resultado del crackeo es utilizado como contraseña para convertirse en root y recuperar la flag de root.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/brain/17.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+
+	</main>
+	<br/>
+	<footer class="container">
+		<div class="row">
+			<div class="col">
+				<a href="../challenges.html"> ← Volver </a>
+			</div>
+			<div class="col">
+				<div class="d-flex flex-row-reverse">
+					<ul class="social-network social-circle"> <!-- thanks to https://codepen.io/NamiqNamaz/pen/QZYyEq --> 		<li>
+							<a href="https://github.com/migue27au" class="icoGithub" title="Facebook"><i class="fa fa-github" style="color: white;"></i></a>
+						</li>
+						<li>
+							<a href="https://www.linkedin.com/in/migue27au" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin" style="color: white;"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+	<a id="topBtn" class="text-primary" onclick="toTop()"><i class="fa fa-angle-up fa-3x"></i></a>
+	<script type="text/javascript">
+		//Get the button:
+		btn = document.getElementById("topBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+		function scrollFunction() {
+			if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+				btn.style.opacity = "1";
+			} else {
+				btn.style.opacity = "0";
+			}
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function toTop() {
+			document.body.scrollTop = 0; // For Safari
+			document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		}
+	</script>
+
+</body>
+</html>
+
+
+	
