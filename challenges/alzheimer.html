@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>C1b3r_F0lio</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Boostrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	<!-- footer -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/footer.css">
+
+	<!-- top button -->
+	<link rel="stylesheet" href="../css/topbutton.css">
+</head>
+<body class="bg-dark">
+
+	<header>
+		<div> <!--navbar -->
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="../index.html">C1b3r_F0lio</a>
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="../index.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../challenges.html">Challenges</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../proyectos.html">Proyectos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../logros.html">Logros</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		</div>
+		<div> <!--background image -->
+			<img src="../images/background.gif" class="img-fluid" alt="Responsive image">
+		</div>
+	</header>
+	<br/>
+	<main class="container bg-dark text-white">
+		
+		<div class="row">
+            <div class="col col-10">
+    		  <h1 class="display-4">HackMyVM - Alzheimer</h1>
+            </div>
+            <div class="col col-2 d-flex flex-row-reverse">
+                 <h5 class="text-secondary">18 junio 2021</h5>
+            </div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<p>Esta máquina se encuentra en la plataforma <a href="https://hackmyvm.eu/">HackMyVM</a> y ha sido creada por el usuario <em><a href="https://lacashita.com/">sml</a></em>.</p>
+				<p>Es una máquina linux muy interesante debido al uso de nuevas técnicas de explotación que no conocía hasta la fecha.</p>
+			</div>
+			<div class="col">
+				<table class="table">
+				  <thead>
+				    <tr class="bg-secondary">
+				      <th scope="col">#</th>
+				      <th scope="col">Dificultad</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <th scope="row">Acceso</th>
+				      <td class="text-success">Fácil</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Escalada de privilegios</th>
+				      <td class="text-success">Muy fácil</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+		
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Enumeración</h4>
+		<hr>
+
+		<p>Antes que nada será necesario conocer la dirección IP de la máquina objetivo para lo que se utilizará la herramienta <a href="https://migue27au.github.io/C1b3r_F0lio/proyectos/ping-sweep.html">ping-sweep</a>.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/alzheimer/1.png" alt="" class="img-fluid">
+		</div>
+
+		<p>La herramienta ha detectado 4 IP:</p>
+		<ul>
+			<li>10.10.10.1 → Gateway</li>
+			<li>10.10.10.100 → Raspberry</li>
+			<li>10.10.10.102 → Host anfitrión</li>
+			<li>10.10.10.103 → Máquina objetivo</li>
+		</ul>
+
+		<p>A continuación, se realiza el escaneo de puertos con la herramienta nmap.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/alzheimer/2.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Se ha detectado únicamente el puerto FTP abierto, lo cual es extraño, por lo que se realiza un segundo escaneo para detectar si existen puertos filtrados.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/alzheimer/3b.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Exacto existen dos puertos filtrados, SSH y HTTP. Supongo que los tiros irán para desbloquear estos puertos a partir del servicio FTP. A continuación se hace una detección de los servicios del puerto 21 para descubrir más de los servicios que se están ejecutando.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/alzheimer/3.png" alt="" class="img-fluid">
+		</div>
+
+		<p>nmap avisa de que está permitido el anonymous login, por lo que se conecta por ftp para descubrir si existen archivos compartidos.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/alzheimer/4.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Se descubre un fichero oculto llamado .secretnote.txt que se descarga utilizando el comando wget.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/alzheimer/5.png" alt="" class="img-fluid">
+		</div>
+
+		<p>El fichero oculto continene unas instrucciones para desbloquear puertos a través de un port knocking, una técnica que no había realizado hasta la fecha.</p>
+		<p>Para realizar el port knocking se utiliza la herramienta knock.</p>
+		
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/alzheimer/6.png" alt="" class="img-fluid">
+		</div>
+
+		<p>A continuación, se realiza un escaneo para comprobrar si se han desbloqueado los puertos filtrados. Es posible que sea necesario realizar el knock de puertos varias veces.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/alzheimer/7.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Exacto, se han desbloqueado los puertos. Se utiliza curl para comprobrar que es lo que hay en el servicio HTTP.</p>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Conseguir acceso.</h4>
+		<hr>
+
+		<p>En el servicio http hay un mensaje de medusa que informa que ha olvidado la contraseña pero que está apuntada en un archivo txt. Es posible que la contraseña se la cadena "Ihavebeenalwayshere!!!" del archivo .secretnote.txt</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/alzheimer/8.png" alt="" class="img-fluid">
+		</div>
+
+		
+		<p>Se realiza una conexión por SSH utilizando estas credenciales y se consigue acceso al sistema.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/alzheimer/9.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Siendo el usuario medusa ya puede consultarse la flag de user</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/alzheimer/10.png" alt="" class="img-fluid">
+		</div>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Escalada de privilegios</h4>
+		<hr>
+
+		<p>Se comprueban los permisos de medusa y se descubre que tiene permiso SUID para el binario capsh.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/alzheimer/11.png" alt="" class="img-fluid">
+		</div>
+
+		<p>El binario capsh puede ser utilizado para ejecutar una bash como root y conseguir así una shell privilegiada.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/alzheimer/12.png" alt="" class="img-fluid">
+		</div>
+
+		<p>Siendo root puede consultarse la flag y concluir así con la resolución de la máquina.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/alzheimer/13.png" alt="" class="img-fluid">
+		</div>
+	</main>
+	<br/>
+	<footer class="container">
+		<div class="row">
+			<div class="col">
+				<a href="../challenges.html"> ← Volver </a>
+			</div>
+			<div class="col">
+				<div class="d-flex flex-row-reverse">
+					<ul class="social-network social-circle"> <!-- thanks to https://codepen.io/NamiqNamaz/pen/QZYyEq --> 		<li>
+							<a href="https://github.com/migue27au" class="icoGithub" title="Facebook"><i class="fa fa-github" style="color: white;"></i></a>
+						</li>
+						<li>
+							<a href="https://www.linkedin.com/in/migue27au" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin" style="color: white;"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<a id="topBtn" class="text-primary" onclick="toTop()"><i class="fa fa-angle-up fa-3x"></i></a>
+	<script type="text/javascript">
+		//Get the button:
+		btn = document.getElementById("topBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+		function scrollFunction() {
+			if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+				btn.style.opacity = "1";
+			} else {
+				btn.style.opacity = "0";
+			}
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function toTop() {
+			document.body.scrollTop = 0; // For Safari
+			document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		}
+	</script>
+</body>
+</html>
+
+
+	
