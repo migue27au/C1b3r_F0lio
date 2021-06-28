@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>C1b3r_F0lio</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Boostrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	<!-- footer -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/footer.css">
+
+	<!-- top button -->
+	<link rel="stylesheet" href="../css/topbutton.css">
+
+</head>
+<body class="bg-dark">
+
+	<header>
+		<div> <!--navbar -->
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="../index.html">C1b3r_F0lio</a>
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="../index.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../challenges.html">Challenges</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../proyectos.html">Proyectos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../logros.html">Logros</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		</div>
+		<div> <!--background image -->
+			<img src="../images/background.gif" class="img-fluid" alt="Responsive image">
+		</div>
+	</header>
+	<br/>
+	<main class="container bg-dark text-white">
+		<div class="row">
+            <div class="col col-10">
+    		  <h1 class="display-4">HackMyVM - Connection</h1>
+            </div>
+            <div class="col col-2 d-flex flex-row-reverse">
+                 <h5 class="text-secondary">7 junio 2021</h5>
+            </div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<p>Esta máquina se encuentra en la plataforma <a href="https://hackmyvm.eu/">HackMyVM</a> y ha sido creada por el usuario <em>whitecr0wz</em>.</p>
+				<p>Una máquina Linux muy sencilla que se basa en una mala configuración de samba para su explotación.</p>
+			</div>
+			<div class="col">
+				<table class="table">
+				  <thead>
+				    <tr class="bg-secondary">
+				      <th scope="col">#</th>
+				      <th scope="col">Dificultad</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <th scope="row">Acceso</th>
+				      <td class="text-success">Fácil</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Escalada de privilegios</th>
+				      <td class="text-success">Muy fácil</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Enumeración</h4>
+		<hr>
+
+		<p>Como todas las máquinas de HackMyVM es necesario obtener la dirección de la máquina objetivo, para ello se utiliza la herramienta <a href="https://migue27au.github.io/C1b3r_F0lio/proyectos/ping-sweep.html" data-type="URL" data-id="https://github.com/migue27au/ping-sweep">ping-sweep</a> con el modo de detección de sistema operativo.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/connection/1.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>La herramienta ha detectado 4 IP:</p>
+		<ul>
+			<li>10.10.10.1 → Gateway</li>
+			<li>10.10.10.100 → Máquina objetivo</li>
+			<li>10.10.10.101 → Host anfitrión</li>
+		</ul>
+		
+		<p>La enumeración se realiza en dos pasos, un primer paso con una enumeración rápida de todos los puertos y una segunda enumeración de los puertos abiertos más profunda.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/connection/2.png" alt="error loading image :(" class="img-fluid">
+		</div>
+		<br/>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/connection/3.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>El escaneo de puertos ha desvelado que está activado el servicio samba, por lo que se comienza la enumeración por ahí.</p>
+		<p>Primero se consultan las carpetas compartidas por samba sin proporcionar contraseña.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/connection/4.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Se encuentra que existe una carpeta llamada "share" y se lista su contenido.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/connection/5.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>A continuación, se lista el contenido de la carpeta "html".</p>
+		
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/connection/6.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Esta carpeta tiene un archivo index.html, el cual es el index.html predeterminado de Apache. Se prueba subir un reverse shell de php para subirlo a esta carpeta.</p>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Explotación</h4>
+		<hr>
+
+		<p>Por rapidez y simplificar la resolución de la máquina se consulta la web PentestMonkeys en busca de un <a href="https://pentestmonkey.net/tools/web-shells/php-reverse-shell">PHP reverse shell</a> y se descarga modelo proporcionado. Es necesario indicar en el script PHP malicioso la dirección IP y puerto de la máquina del atacante.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/connection/7a.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Tras la configuración del script se sube a la carpeta "html" a través del servicio samba.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/connection/7b.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Una vez subido queda escuchar en el puerto indicado mediante netcat y ejecutar el script malicioso.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/connection/8.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<br/>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/connection/9.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Al ejecutar el PHP malicioso se recibe la conexión en la terminal con netcat consiguiendo acceso al sistema.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/connection/10.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Sin embargo, la terminal es muy simple y poco útil. Será necesaria el tratamiento de la tty. TheHackerSnow tiene una guía detallada de como hacer esto → <a href="https://thehackersnow.com/tratamiento-de-una-tty/">https://thehackersnow.com/tratamiento-de-una-tty/</a>.</p>
+		<p>Después del tratamiento queda una terminal más agradable con la que se puede trabajar de forma más dinámica.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/connection/11.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Escalada de privilegios</h4>
+		<hr>
+
+		<p>El acceso se consigue con el usuario www-data, será necesario escalar a otro usuario. Primero, se comprueban qué usuarios existen en el sistema.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/connection/12.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Se comprueban los permisos SUID del usuario www-data y se descubre que tiene permiso para ejecutar el binario gdb.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/connection/13.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Se busca en la web de <a href="https://gtfobins.github.io/">GTFobins</a> una forma de escalar privilegios utilizando el binario gdb con permisos SUID. Una vez conocida la forma, se ejecuta y se obtiene una terminal privilegiada.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/connection/14.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Finalmente, pueden consultarse las flags de usuario y root.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/connection/15.png" alt="error loading image :(" class="img-fluid">
+		</div>
+
+	</main>
+	<br/>
+	<footer class="container">
+		<div class="row">
+			<div class="col">
+				<a href="../challenges.html"> ← Volver </a>
+			</div>
+			<div class="col">
+				<div class="d-flex flex-row-reverse">
+					<ul class="social-network social-circle"> <!-- thanks to https://codepen.io/NamiqNamaz/pen/QZYyEq --> 		<li>
+							<a href="https://github.com/migue27au" class="icoGithub" title="Facebook"><i class="fa fa-github" style="color: white;"></i></a>
+						</li>
+						<li>
+							<a href="https://www.linkedin.com/in/migue27au" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin" style="color: white;"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+	<a id="topBtn" class="text-primary" onclick="toTop()"><i class="fa fa-angle-up fa-3x"></i></a>
+	<script type="text/javascript">
+		//Get the button:
+		btn = document.getElementById("topBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+		function scrollFunction() {
+			if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+				btn.style.opacity = "1";
+			} else {
+				btn.style.opacity = "0";
+			}
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function toTop() {
+			document.body.scrollTop = 0; // For Safari
+			document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		}
+	</script>
+
+</body>
+</html>
+
+
+	

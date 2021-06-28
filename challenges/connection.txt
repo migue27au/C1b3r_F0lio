@@ -1,0 +1,2 @@
+acceso -> https://pentestmonkey.net/tools/web-shells/php-reverse-shell
+escalada -> https://gtfobins.github.io/gtfobins/gdb/#suid
