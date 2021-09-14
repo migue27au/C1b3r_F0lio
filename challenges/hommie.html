@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>C1b3r_F0lio - Hommie</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Boostrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	<!-- footer -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/footer.css">
+
+	<!-- top button -->
+	<link rel="stylesheet" href="../css/topbutton.css">
+
+</head>
+<body class="bg-dark">
+
+	<header>
+		<div> <!--navbar -->
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="../index.html">C1b3r_F0lio</a>
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="../index.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../challenges.html">Challenges</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../proyectos.html">Proyectos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../logros.html">Logros</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		</div>
+		<div> <!--background image -->
+			<img src="../images/background.gif" class="img-fluid" alt="Responsive image">
+		</div>
+	</header>
+	<br/>
+	<main class="container bg-dark text-white">
+		<div class="row">
+            <div class="col col-10">
+    		  <h1 class="display-4">HackMyVM - Hommie</h1>
+            </div>
+            <div class="col col-2 d-flex flex-row-reverse">
+                 <h5 class="text-secondary">14 septiembre 2021</h5>
+            </div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+				<p>Esta máquina se encuentra en la plataforma <a href="https://hackmyvm.eu/">HackMyVM</a> y ha sido creada por el usuario <a href="https://twitter.com/x6cx61x63x61x73"><em>sml</em></a>.</p>
+				<p>Una máquina sencilla sin técnicas complejas de explotación pero que requiere de una buena enumeración. Esto hace que sea una máquina muy entretenida de resolver.</p>
+			</div>
+			<div class="col">
+				<table class="table">
+				  <thead>
+				    <tr class="bg-secondary">
+				      <th scope="col">#</th>
+				      <th scope="col">Dificultad</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <th scope="row">Acceso</th>
+				      <td class="text-success">Fácil</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Escalada de privilegios</th>
+				      <td class="text-success">Fácil</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+		
+		
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Enumeración</h4>
+		<hr>
+
+		<p>Como todas las máquinas de esta plataforma es necesario conocer la dirección IP de la máquina. Para ello utilizaré la herramienta <a href="../proyectos/ping-sweep.html">ping-sweep</a> con el modo de descubrimiento de sistema operativo para poder avanzar más rápido en la enumearción. El motivo de utilizar esta herramienta y no otra basada en el protocoo ARP se debe a que despliego las máquinas en una red privada que utilizo como laboratorio y distinta a la red local, por lo que un descubrimiento mediante ARP no detectará las máquinas.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/hommie/1.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>La herramienta ha detectado 5 IP:</p>
+		<ul>
+			<li>10.10.10.1 - linux → Gateway</li>
+			<li>10.10.10.100 - linux → Raspberry Pi de mi laboratorio</li>
+			<li>10.10.10.101 - windows → Sistema anfitrión</li>
+			<li>10.10.10.102 - linux → No identificada</li>
+			<li>10.10.10.103 - linux → No identificada</li>
+		</ul>
+		<p>Se encuentran dos posibles máquinas que pueden ser la máquina objetivo, para identificarla se realizará un escaneo de puerto rápido para determinar cual es la máquina objetivo.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/hommie/2.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Estos escaneos identifican que la máquina objetivo es la de la dirección IP: 10.10.10.103.</p>
+		<p>A continuación, se comienza con el escaneo de puertos. Como es habitual para el escaneo se utiliza nmap y se divide en dos fases: la primera de un escaneo rápido de los 65535 puertos para detectar aquellos abiertos y la segunda para realizar una enumeración más exahustiva usando scripts básicos de los puertos abiertos.</p>
+		
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/hommie/3.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Una vez obtenidos los puertos abiertos se realiza el segundo escaneo más específico. Para obtener los puertos de forma rápida se utiliza la herramienta <a href="https://github.com/migue27au/get-ports">get-ports</a>. Esta herramienta obtiene los puertos de un archivo nmap y los copia en la <em>clipboard</em>, está basada en la herramienta <em>extractPorts</em> del usuario <a href="https://twitter.com/S4vitar">S4vitar</a>.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/hommie/4.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>El escaneo durará 5 minutos, tiempo suficiente para hacerse un café.<p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/hommie/5.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Con el café en mano se consultan los resultados del escaneo, el cual ha desvelado 3 puertos abiertos: HTTP, FTP y SSH. Además, el escaneo desvela que el servicio FTP permite la conexión anónima.</p>
+		<p>Primero se realiza una enumeración del servicio HTTP mediante la herramienta whatweb y obteniendo la página principal con curl.</p>
+		
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/hommie/6.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>En la página principal del servicio HTTP se dan dos pistas. La primera la existencia de un usuario alexia, la segunda que su clave privada está expuesta. Será necesario encontrar la clave privada.</p>
+
+		<p>Ya que el servicio FTP permite la conexión FTP, se inicia la búsqueda en ese servicio.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/hommie/7.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Se descubre la carpeta oculta ".web" pero sin ningún contenido interesante. La clave privada se encontrará en otro lado.</p>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Ganar acceso</h4>
+		<hr>
+
+		<p>La carpeta oculta da a pensar que puede haber algún servicio oculto, por lo que se realiza un escaneo de los primeros 100 puertos UDP.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/hommie/8.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Se descubren dos servicios UDP, el servicio DHCP y un servicio TFTP (Trivial File Transfer Protocol). Se realiza la conexión al servicio TFTP y se solicita la clave privada.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/hommie/9.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>¡Éxito! La clave privada está expuesta en este servicio. Se inicia una conexión SSH como usuario alexia y usando la clave privada.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/hommie/10.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Escalada de privilegios</h4>
+		<hr>
+
+		<p>Se consultan los privilegios del usuario alexia y se descubre permiso SUID para ejecutar un binario showMeTheKey.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/hommie/11.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>El nombre del archivo no deja mucho lugar a la imaginación, aún así se ejecuta para saber qué realiza.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/hommie/12.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>El binario muestra la clave privada del usuario alexia. Se realiza un análisis estático básico del binario, consultando las cadenas de caracteres mediante la herramienta strings.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/hommie/13.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Entre las cadenas se encuentra un posible vector de ataque, el binario muestra la clave privada basándose en la variable de entorno $HOME.</p>
+		<p>Se modifica la variable de entorno para contener /root en lugar de /home/alexia.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/hommie/14.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Se ejecuta el binario y ahora se muestra la clave privada de root, esta clave se copia y se pega en otro archivo para realizar la posterior conexión como root.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/hommie/15.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>El usuario root se obtiene realizando una nueva conexión SSH utilizando la clave privada recién adquirida.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/hommie/16.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+		
+		<p>En el directorio base del usuario root existe un archivo de texto que indica que no se sabe dónde se encuentra la flag. Pero una simple búsqueda encuentra la flag.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/hommie/17.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Finalmente, se obtienen las dos flags y se concluye la resolución de la máquina.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/hommie/18.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+	</main>
+	<br/>
+	<footer class="container">
+		<div class="row">
+			<div class="col">
+				<a href="../challenges.html"> ← Volver </a>
+			</div>
+			<div class="col">
+				<div class="d-flex flex-row-reverse">
+					<ul class="social-network social-circle"> <!-- thanks to https://codepen.io/NamiqNamaz/pen/QZYyEq --> 		<li>
+							<a href="https://github.com/migue27au" class="icoGithub" title="Facebook"><i class="fa fa-github" style="color: white;"></i></a>
+						</li>
+						<li>
+							<a href="https://www.linkedin.com/in/migue27au" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin" style="color: white;"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+	<a id="topBtn" class="text-primary" onclick="toTop()"><i class="fa fa-angle-up fa-3x"></i></a>
+	<script type="text/javascript">
+		//Get the button:
+		btn = document.getElementById("topBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+		function scrollFunction() {
+			if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+				btn.style.opacity = "1";
+			} else {
+				btn.style.opacity = "0";
+			}
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function toTop() {
+			document.body.scrollTop = 0; // For Safari
+			document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		}
+	</script>
+
+</body>
+</html>
+
+
+	

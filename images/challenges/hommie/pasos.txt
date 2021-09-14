@@ -1,0 +1,4 @@
+1. ping-sweep y se descubren 2 posibles ip.
+2. Fast nmap para hallar los puertos y saber quien es el objetivo.
+3. Nmap con 3 puertos: ssh, ftp y http
+4. FTP abierto con carpeta oculta .web
