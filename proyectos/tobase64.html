@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>C1b3r_F0lio - findos</title>
+	<title>C1b3r_F0lio - tobase64</title>
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,7 +33,7 @@
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li class="nav-item">
-						<a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="../index.html">Home</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="../challenges.html">Challenges</a>
@@ -57,84 +57,56 @@
 		
 		<div class="row">
             <div class="col col-10">
-    		  <h1 class="display-4">Findos</h1>
+    		  <h1 class="display-4">tobase64</h1>
             </div>
             <div class="col col-2 d-flex flex-row-reverse">
-                 <h5 class="text-secondary">18 mayo 2021</h5>
+                 <h5 class="text-secondary">11 julio 2021</h5>
             </div>
 		</div>
 		
-		<p><a href="https://github.com/migue27au/findos">Findos</a> es una herramienta para el reconocimiento del sistema operativo de un equipo que he desarrollado para satisfacer la necesidad de un reconocimiento poco ruidoso de SO. Este reconocimiento lo realiza enviando un paquete ICMP Echo al equipo objetivo y dependiendo del TTL del paquete de respuesta se identifica el sistema operativo. Esto es así ya que se conoce que:</p>
+		<p><a href="https://github.com/migue27au/tobase64">tobase64</a> es una herramienta sencilla que codifica cada línea de un fichero en base64. Ha sido desarrollada para convertir un diccionario de palabras en base64 de forma rápida.</p>
 
-		<ul>
-			<li>UNIX: TTL = 64</li>
-			<li>Windows: TTL = 128</li>
-			<li>Solaris: TTL = 254</li>
-		</ul>
-		
-		<p>La herramienta está desarrollada en Python3 y publicada en Github para que pueda ser fácilmente descargable por cualquier usuario. Su uso es bastante sencillo, simplemente hay que indicar la dirección IP de la máquina objetivo y la herramienta te indicará por consola su sistema operativo.</p>
+		<p>La herramienta está desarrollada en bash y publicada en Github para que pueda ser fácilmente descargable por cualquier usuario. Su uso se explica con el siguiente ejemplo:</p>
 
 		<div class="d-flex justify-content-center">
-			<img loading="lazy" src="../images/proyectos/findos/1.png" alt="" class="img-fluid">
+			<img loading="lazy" src="../images/proyectos/tobase64/1.png" alt="" class="img-fluid">
 		</div>
 
 		<p>El código de la herramienta es el siguiente:</p>
-
-		<div class="border border-info">
+<div class="border border-info">
 			<div class=" mt-3 ml-4">
 					<code><pre class="text-white">
-#!/usr/bin/python3
+#!/bin/bash
 
-import re, sys, subprocess
+if [ "$#" -ne 2 ]; then
+    if [ "$1" != "-h" ]; then
+    	echo "Insufficient arguments, expected 2. Use -h to see help."
+    	exit 2
+	else
+		echo "Usage: tobase64 &lt;input_file&gt; &lt;output_file&gt;"
+		exit 2
+	fi
+else
+	file=$1
 
-usage = "Usage: findos &lt; IPv4 address&gt;"
-help_usage = "Bad IPv4 address. Example: 123.123.123.123"
-address_pattern = re.compile("^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$")
+	file2=$2
 
-solaris_ttl = 254
-windows_ttl = 128
-linux_ttl = 64
+	lines=$(wc $file -l | cut -d ' ' -f 1)
 
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+	touch file2
 
-def main(argv):
-	address = argv[0]
-	address_matched = address_pattern.match(address)
+	for (( c=0; c<=$lines; c++ )); do
+		
+		line=$(cat $file | head -n $c | tail -n 1)
+		b64=$(echo $line | base64)
 
-	if address_matched:
-		cmd = "ping -c1 " + address + " | head -n2 | tail -n1 | awk '{print $6}' | cut -d '=' -f 2"
-		ttl = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-		if "Unreachable" not in str(ttl.stdout):
-			ttl = int(str(ttl.stdout)[2:-3])
-			if ttl > solaris_ttl:
-				print(bcolors.WARNING + "[!] " + bcolors.ENDC +"unknown")
-			if ttl > windows_ttl and ttl <= solaris_ttl:
-				print(bcolors.OKGREEN + "[+] " + bcolors.ENDC +"solaris")
-			elif ttl > linux_ttl and ttl <= windows_ttl:
-				print(bcolors.OKGREEN + "[+] " + bcolors.ENDC + "windows")
-			elif ttl <= linux_ttl:
-				print(bcolors.OKGREEN + "[+] " + bcolors.ENDC + "linux")
-		else:
-			print(bcolors.FAIL + "[-] " + bcolors.ENDC + "Unreachable ip address")
+		echo $b64 >> $file2
+	done
+fi
 
-	else:
-		print(bcolors.FAIL + "[-] " + bcolors.ENDC + help_usage)
-
-if __name__ == "__main__":
-	if len(sys.argv) == 2:
-		main(sys.argv[1:])
-	else:
-		print(bcolors.WARNING + "[!] " + bcolors.ENDC + usage)
+exit 0
 </pre></code></div></div>
+		
 	</main>
 	<br/>
 	<footer class="container">
