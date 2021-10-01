@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>C1b3r_F0lio - Faust</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Boostrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	<!-- footer -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/footer.css">
+
+	<!-- top button -->
+	<link rel="stylesheet" href="../css/topbutton.css">
+</head>
+<body class="bg-dark">
+
+	<header>
+		<div> <!--navbar -->
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="../index.html">C1b3r_F0lio</a>
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="../index.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../challenges.html">Challenges</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../proyectos.html">Proyectos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../logros.html">Logros</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		</div>
+		<div> <!--background image -->
+			<img src="../images/background.gif" class="img-fluid" alt="Responsive image">
+		</div>
+	</header>
+	<br/>
+	<main class="container bg-dark text-white">
+		
+		<div class="row">
+            <div class="col col-10">
+    		  <h1 class="display-4">HackMyVM - Faust</h1>
+            </div>
+            <div class="col col-2 d-flex flex-row-reverse">
+                 <h5 class="text-secondary">28 septiembre 2021</h5>
+            </div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<p>Esta máquina se encuentra en la plataforma <a href="https://hackmyvm.eu/">HackMyVM</a> y ha sido creada por el usuario <em>cromiphi</em>.</p>
+				<p>Es una máquina linux con una temática realista basada en la explotación de un CMS. Para la resolución de esta máquina se hace uso de Metasploit aunque no es estritamente necesario.</p>
+			</div>
+			<div class="col">
+				<table class="table">
+				  <thead>
+				    <tr class="bg-secondary">
+				      <th scope="col">#</th>
+				      <th scope="col">Dificultad</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <th scope="row">Acceso</th>
+				      <td class="text-warning">Media</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Escalada de privilegios</th>
+				      <td class="text-warning">Media</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+		
+		<hr>
+		<h4 class="d-flex justify-content-center">Enumeración</h4>
+		<hr>
+
+		<p>Antes que nada será necesario conocer la dirección IP de la máquina objetivo para lo que se utilizará la herramienta <a href="https://migue27au.github.io/C1b3r_F0lio/proyectos/ping-sweep.html">ping-sweep</a>.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/1.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>La herramienta ha detectado 4 IP:</p>
+		<ul>
+			<li>10.10.10.1 -linux → Gateway</li>
+			<li>10.10.10.102 - windows → Máquina objetivo</li>
+			<li>10.10.10.103 - linux → Host anfitrión</li>
+		</ul>
+
+		<p>Como todas las máquinas se comienza con un escaneo de puertos. Primero un escaneo rápido de todos los puertos y después con un escaneo más específico habilitando la detección de servicio y utilizando unos scripts de enumeración básicos.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/2.PNG" alt="" class="img-fluid">
+		</div>
+
+		<br />
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/3.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>El escaneo descubre tres puertos abiertos el 22 SSH, 80 HTTP y 6600 otro servicio.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/4.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>En el puerto 80 es un servicio HTTP con el gestor de contenidos CMS Made Simple. Consultando un poco en la web se encuentra rápidamente la versión 2.2.5.</p>
+		<p>Sabiendo la versión se utiliza seachsploit para buscar algún exploit y se encuentra uno que corresponde a la versión de un RCE.</p>
+		
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/5.PNG" alt="" class="img-fluid">
+		</div>
+		
+		<p>Se descarga este exploit y se consulta su interior para saber su funcionamiento.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/6.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>El exploit requiere de unas credenciales y se conecta a la url /cmsms/admin.</p>
+		<p>Consultando el CMS se observa que la ruta /admin existe un formulario de inicio de sesión, pero serán necesarias unas credenciales.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/8.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>Se utiliza netcat para hacer un banner grabbing en el puerto 6600. Y se encuetnra un mensaje para el usuario www-data de un tal Paul, este mensaje advierte de que www-data debe eliminar todo su trabajo para encontrar una recompensa en casa. Esto parace ser una pista para la escalada de privilegios.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/7.PNG" alt="" class="img-fluid">
+		</div>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/10.PNG" alt="" class="img-fluid">
+		</div>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/11.PNG" alt="" class="img-fluid">
+		</div>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/12.PNG" alt="" class="img-fluid">
+		</div>
+
+	</main>
+	<br/>
+	<footer class="container">
+		<div class="row">
+			<div class="col">
+				<a href="../challenges.html"> ← Volver </a>
+			</div>
+			<div class="col">
+				<div class="d-flex flex-row-reverse">
+					<ul class="social-network social-circle"> <!-- thanks to https://codepen.io/NamiqNamaz/pen/QZYyEq --> 		<li>
+							<a href="https://github.com/migue27au" class="icoGithub" title="Facebook"><i class="fa fa-github" style="color: white;"></i></a>
+						</li>
+						<li>
+							<a href="https://www.linkedin.com/in/migue27au" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin" style="color: white;"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<a id="topBtn" class="text-primary" onclick="toTop()"><i class="fa fa-angle-up fa-3x"></i></a>
+	<script type="text/javascript">
+		//Get the button:
+		btn = document.getElementById("topBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+		function scrollFunction() {
+			if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+				btn.style.opacity = "1";
+			} else {
+				btn.style.opacity = "0";
+			}
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function toTop() {
+			document.body.scrollTop = 0; // For Safari
+			document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		}
+	</script>
+</body>
+</html>
+
+
+	
