@@ -78,11 +78,11 @@
 				  <tbody>
 				    <tr>
 				      <th scope="row">Acceso</th>
-				      <td class="text-warning">Media</td>
+				      <td class="text-warning">Fácil-Media</td>
 				    </tr>
 				    <tr>
 				      <th scope="row">Escalada de privilegios</th>
-				      <td class="text-warning">Media</td>
+				      <td class="text-warning">Fácil-Media</td>
 				    </tr>
 				  </tbody>
 				</table>
@@ -136,31 +136,197 @@
 			<img loading="lazy" src="../images/challenges/faust/6.PNG" alt="" class="img-fluid">
 		</div>
 
-		<p>El exploit requiere de unas credenciales y se conecta a la url /cmsms/admin.</p>
+		<p>El exploit requiere de unas credenciales y se conecta a la url /cmsms/admin. Se procede a continuar con la enumeración para descubrir una pista acerca de estas credenciales.</p>
 		<p>Consultando el CMS se observa que la ruta /admin existe un formulario de inicio de sesión, pero serán necesarias unas credenciales.</p>
 
 		<div class="d-flex justify-content-center">
 			<img loading="lazy" src="../images/challenges/faust/8.PNG" alt="" class="img-fluid">
 		</div>
 
-		<p>Se utiliza netcat para hacer un banner grabbing en el puerto 6600. Y se encuetnra un mensaje para el usuario www-data de un tal Paul, este mensaje advierte de que www-data debe eliminar todo su trabajo para encontrar una recompensa en casa. Esto parace ser una pista para la escalada de privilegios.</p>
+		<p>Se utiliza netcat para hacer un banner grabbing en el puerto 6600. Y se encuetnra un mensaje para el usuario www-data de un tal Paul, este mensaje advierte de que www-data debe eliminar todo su trabajo para encontrar una recompensa en casa. Esto parace ser una pista para la escalada de privilegios no para conseguir acceso.</p>
 		<div class="d-flex justify-content-center">
 			<img loading="lazy" src="../images/challenges/faust/7.PNG" alt="" class="img-fluid">
 		</div>
+
+		<p>Consultando la web, en la sección de noticias se encuentra un mensaje de "admin" (ya se tiene un usuario para las credenciales), este mensaje indica que se ha instalado un nuevo módulo en la web.</p>
 
 		<div class="d-flex justify-content-center">
 			<img loading="lazy" src="../images/challenges/faust/10.PNG" alt="" class="img-fluid">
 		</div>
 
+		<hr>
+		<h4 class="d-flex justify-content-center">Ganar acceso</h4>
+		<hr>
+
+		<p>Tras continuar con la enumeración no se encuentra ninguna pista de la contraseña. Será necesario obtenerla con una ataque de diccionario, para ello se utiliza hydra utilizando como usuario admin y de diccionario rockyou. El ataque se lanza contra el formulario de login /admin.</p>
+
 		<div class="d-flex justify-content-center">
 			<img loading="lazy" src="../images/challenges/faust/11.PNG" alt="" class="img-fluid">
 		</div>
+
+		<p>Hydra en cuestión de segundos encuentra la contraseña: bullshit. Con esto se modifica el script indicando el usuario, la contraseña y la ruta del login y se ejecuta el ataque. También se ha modificado para ejecutarlo con python3.</p>
 
 		<div class="d-flex justify-content-center">
 			<img loading="lazy" src="../images/challenges/faust/12.PNG" alt="" class="img-fluid">
 		</div>
 
-	</main>
+		<p>Sin embargo, el script no tiene éxito, no se habrá configurado algo bien. Lo bueno que al usar el exploit se reconoce que utiliza una vulnerabiliad arbitrary file upload. Por lo que se busca un nuevo exploit o técnica que utilice este método.</p>
+
+
+		<p>Se encuentran un método de explotación arbitrary file upload y un exploit de metasploit. Se podría utilizar el método de explotación pero se decanta por el uso de metasploit debido a que es una herramienta muy potente que todavía no se ha mostrado en C1ber_F0lio. Para no convertirse en un script kiddie es importante saber qué es lo que ejecuta el exploit y no ejecutarlo sin más. Esto es importante para convertirse en buenos pentesters no solo para saber la técnica que utiliza el exploit si no también para conocer el rango de ataque y no afectar a otros sistemas.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/13.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>Se inicia metasploit, se elige el módulo y se configurarn las opciones. Finalmente se inicia el exploit.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/14.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>Se inicia metasploit, se elige el módulo y se configurarn las opciones. Finalmente se inicia el exploit.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/15.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>El exploit tiene éxito y se consigue acceso al sistema. Para pasar de una meterpreter a una terminal normal se utiliza la opción SHELL.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/16.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>Sin embargo, se devuelve una shell sin tratar. Por lo que se realiza un tratamiento rápido para disopner de una terminal más agradable.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/17.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>En este punto se es el usuario www-data y se recuerda la pista que había en el puerto 6600 que decía de eliminar todo el trabajo y que se encontrará una pista en casa de Paul.</p>
+		<p>Eliminar todo el trabajo se supone que se refiere a eliminar todo lo que hay en la carpeta /var/www.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/18.PNG" alt="" class="img-fluid">
+		</div>
+		<p>Y Casa de Paul será el directorio /home/paul.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/19.PNG" alt="" class="img-fluid">
+		</div>
+		<p>¡Exacto! en el directorio /home/paul aparece un archivo password.txt</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/20.PNG" alt="" class="img-fluid">
+		</div>
+
+
+		<p>Sabiendo el usuario y la clave se puede conectar por ssh y dejar de utilizar la terminal de metasploit.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/21.PNG" alt="" class="img-fluid">
+		</div>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Escalada de privilegios - Primera fase</h4>
+		<hr>
+
+		<p>Se consultan los permisos sudo de paul y se observa que se tiene permiso de ejecución como Nico del binario /usr/bin/base32.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/22.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>En el directorio de nico se encuentra un archivo oculto .secret.txt.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/23.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>Sin embargo, no se tienen permisos para consultar ese archivo.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/24.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>Pero como se tienen permisos para el binario base32 es posible que se pueda utilizar para consultar este archivo. Primero se consulta la ayuda del binario para saber como se utiliza.</p>
+
+	
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/25.PNG" alt="" class="img-fluid">
+		</div>	
+
+		<p>Sabiendo como se usa, se ejecuta como Nico para codidificar en base32 el archivo .secret y decodificarlo para poder ver el contenido en claro.</p>
+		
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/26.PNG" alt="" class="img-fluid">
+		</div>	
+		<p>Parece ser que el contenido está en base64, por lo que a la salida del comando anterior se el concatena decodificarlo en base64.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/27.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>Ahora sí puede verse el contenido del archivo. Y contiene lo que parece ser la clave de acceso de Nico.</p>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Escalada de privilegios - Segunda fase</h4>
+		<hr>
+
+		<p>Teniendo las credenciales de Nico se escala a él y se obtiene la flag de user.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/28.PNG" alt="" class="img-fluid">
+		</div>
+		<br/>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/29.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>Nico no tiene privilegios destacables y no se encuentra ninguna tarea cron1 interesanet. Estando a punto de rendirse y usar linpeas se encuentra el directorio "nico", no muy bien escondido haya que decir, en el directorio base del sistema.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/30.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>Dentro del directorio se encuentra una imagen que es enviada a la máquina atacante a través del servicio SCP (Secure Copy Protocol), este servicio es básicamente el protocolo RCP (Remote Copy Protocol) pero sobre SSH para hacerlo seguro.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/31.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>La imagen en cuestión es la siguiente:</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/32.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>Los metadatos de la imagen no contienen ninguna información por lo que puede que la información esté oculta dentro de la imagen con una técnica esteganográfica. Se utiliza la herramienta steghide para desvelar si existe algún contenido. Se utiliza la herramienta <a href="http://diit.sourceforge.net/">Digital Invisible Ink</a> para desvelar un posible contenido oculto, encontrando un contenido con el algoritmo BlindHide. La herramienta "steghide" en linux realiza esta misma operación.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/33.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>El contenido del archivo es una pista que nos dice que existía un archivo /tmp/goodgame que era muy bueno, pero que ya no está.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/34.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>Se intuye que puede existir una tarea cron que ejecute el archivo, por lo que se crea un archivo goodgame con una reverseshell y se le dan permisos de ejecución.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/35.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>Al poco tiempo se recibe una conexión, esta suposición era la correcta.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/36.PNG" alt="" class="img-fluid">
+		</div>
+
+		<p>Siendo root puede obtenerse el contenido de la flag y concluir así con la resolución de la máquina.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/faust/37.PNG" alt="" class="img-fluid">
+		</div>
+
+
+	</main>	
 	<br/>
 	<footer class="container">
 		<div class="row">
