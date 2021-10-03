@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>C1b3r_F0lio - Superhuman</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Boostrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	<!-- footer -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/footer.css">
+
+	<!-- top button -->
+	<link rel="stylesheet" href="../css/topbutton.css">
+
+</head>
+<body class="bg-dark">
+
+	<header>
+		<div> <!--navbar -->
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="../index.html">C1b3r_F0lio</a>
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="../index.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../challenges.html">Challenges</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../proyectos.html">Proyectos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../logros.html">Logros</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		</div>
+		<div> <!--background image -->
+			<img src="../images/background.gif" class="img-fluid" alt="Responsive image">
+		</div>
+	</header>
+	<br/>
+	<main class="container bg-dark text-white">
+		<div class="row">
+            <div class="col col-10">
+    		  <h1 class="display-4">HackMyVM - Superhuman</h1>
+            </div>
+            <div class="col col-2 d-flex flex-row-reverse">
+                 <h5 class="text-secondary">17 septiembre 2021</h5>
+            </div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+				<p>Esta máquina se encuentra en la plataforma <a href="https://hackmyvm.eu/">HackMyVM</a> y ha sido creada por el usuario <em>cromiphi</em>.</p>
+				<p>Una máquina centrada en la encriptación y ocultación. Para resolverla será necesario la utilización de varias técnicas de crackeo de contraseñas y de descifrado.</p>
+			</div>
+			<div class="col">
+				<table class="table">
+				  <thead>
+				    <tr class="bg-secondary">
+				      <th scope="col">#</th>
+				      <th scope="col">Dificultad</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <th scope="row">Acceso</th>
+				      <td class="text-success">Fácil</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Escalada de privilegios</th>
+				      <td class="text-success">Fácil</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+		
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Enumeración</h4>
+		<hr>
+
+		<p>La resolución comienza identificando la dirección IP de la máquina objetivo. Como el despliegue de la máquina se realiza en una red distinta a la red de la máquina atacante un descubrimiento mediante ARP no es posible, será necesario un barrido de ping. El barrido de ping se realiza mediante la herramienta <a href="../proyectos/ping-sweep.html">ping-sweep</a> con el modo de descubrimiento de sistema operativo para poder avanzar más rápido en la enumeración.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/superhuman/1.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>La herramienta ha detectado 4 IP:</p>
+		<ul>
+			<li>10.10.10.1 - linux → Gateway</li>
+			<li>10.10.10.101 - windows → Sistema anfitrión</li>
+			<li>10.10.10.102 - linux → Máquina objetivo</li>
+		</ul>
+
+		<p>Una vez identificada la máquina objetivo se comienza con el escaneo de puertos. Como es habitual para el escaneo se utiliza nmap y se divide en dos fases: la primera de un escaneo rápido de los 65535 puertos para detectar aquellos abiertos y la segunda para realizar una enumeración más exahustiva usando scripts básicos de los puertos abiertos.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/superhuman/2.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<br />
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/superhuman/3.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>El escaneo ha detectado los servicios SSH y HTTP ejecutándose en los puertos 22 y 80.</p>
+		<p>Se realizan varios fuzzing en la web utilizando distintas extensiones. Hasta que se encuentra con el archivo notes-tips.txt.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/superhuman/4.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>El archivo encontrado contiene el siguiente texto codificado. A primera vista el texto parece estar codificado en base64 pero mirando con detenimiento se observan caracteres distintos a los de base64. Para desencriptar el contenido se prueban con distintos algoritmos hasta dar con ascii85.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/superhuman/5.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>El texto desencriptado cuenta la historia de un individuo al cual salome no le ama y que le ha escrito un poema titulado salome_and_?? con una extensión para que no ocupe mucho espacio.</p>
+		<p>No hay que pensar demasiado para descubrir que el nombre del archivo es salome_and_me, la extensión será de algún tipo de compresión como rar, zip, 7z, tar, etc.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/superhuman/6.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+		<p>Tras pocos intentos se descarga el archivo salome_and_me.zip.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/superhuman/7.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+		
+		<p>El comprimido está cifrado para descifrarlo se utilizará john the ripper. Pero antes será necesario obtener el hash en formato john. Para ello se utilizará la herramienta zip2john.</p>
+		
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/superhuman/9.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>A continuación, se ejecuta john para crackear la contraseña.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/superhuman/10.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>John encuentra rápidamente la contraseña: turtle.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/superhuman/11.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Se descomprime el archivo y se encuentra el siguiente "poema". El poema desvela un usuario potencial "fred" y la contraseña podrá ser alguna de las palabras del poema. Mi intuición me dice que la palabra será schopenhauer.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/superhuman/12.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Ganar acceso</h4>
+		<hr>
+
+		<p>Una vez con las credenciales puede conectarse mediante ssh y ganar acceso al sistema.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/superhuman/13.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>La máquina es un poco trol y al ejecutar el comando ls cierra la conexión.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/superhuman/14.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Puede obtenerse la flag de user.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/superhuman/15.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Escalada de privilegios</h4>
+		<hr>
+
+		<p>Se consultan los permisos sudo y ssuid pero no se encuentra nada destacable.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/superhuman/16.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+		
+		<p>A continuación, se consultan las capabilites y se encuentran algunas posibles vías de escalada.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/superhuman/17.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Se consulta en <a href="https://gtfobins.github.io/">https://gtfobins.github.io/</a> una vía utilizando las capabilites y se encuentra una para el binario node.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/superhuman/18.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Se ejecuta el vector de ataque y se consigue el root al sistema.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/superhuman/19.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Finalmente, se obtiene la flag de root y se concluye la resolución de la máquina.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/superhuman/20.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+	</main>
+	<br/>
+	<footer class="container">
+		<div class="row">
+			<div class="col">
+				<a href="../challenges.html"> ← Volver </a>
+			</div>
+			<div class="col">
+				<div class="d-flex flex-row-reverse">
+					<ul class="social-network social-circle"> <!-- thanks to https://codepen.io/NamiqNamaz/pen/QZYyEq --> 		<li>
+							<a href="https://github.com/migue27au" class="icoGithub" title="Facebook"><i class="fa fa-github" style="color: white;"></i></a>
+						</li>
+						<li>
+							<a href="https://www.linkedin.com/in/migue27au" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin" style="color: white;"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+	<a id="topBtn" class="text-primary" onclick="toTop()"><i class="fa fa-angle-up fa-3x"></i></a>
+	<script type="text/javascript">
+		//Get the button:
+		btn = document.getElementById("topBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+		function scrollFunction() {
+			if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+				btn.style.opacity = "1";
+			} else {
+				btn.style.opacity = "0";
+			}
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function toTop() {
+			document.body.scrollTop = 0; // For Safari
+			document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		}
+	</script>
+
+</body>
+</html>
+
+
+	
