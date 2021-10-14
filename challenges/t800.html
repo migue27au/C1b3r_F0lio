@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>C1b3r_F0lio - T800</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Boostrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	<!-- footer -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/footer.css">
+
+	<!-- top button -->
+	<link rel="stylesheet" href="../css/topbutton.css">
+
+</head>
+<body class="bg-dark">
+
+	<header>
+		<div> <!--navbar -->
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="../index.html">C1b3r_F0lio</a>
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="../index.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../challenges.html">Challenges</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../proyectos.html">Proyectos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../logros.html">Logros</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		</div>
+		<div> <!--background image -->
+			<img src="../images/background.gif" class="img-fluid" alt="Responsive image">
+		</div>
+	</header>
+	<br/>
+	<main class="container bg-dark text-white">
+		<div class="row">
+            <div class="col col-10">
+    		  <h1 class="display-4">HackMyVM - T800</h1>
+            </div>
+            <div class="col col-2 d-flex flex-row-reverse">
+                 <h5 class="text-secondary">15 septiembre 2021</h5>
+            </div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+				<p>Esta máquina se encuentra en la plataforma <a href="https://hackmyvm.eu/">HackMyVM</a> y ha sido creada por el usuario <a href="https://twitter.com/x6cx61x63x61x73"><em>sml</em></a>.</p>
+				<p>Una máquina más compleja de lo habitual con una enumeración basada en metadatos y una escalada de privilegios a partir de una mala configuración de binarios.</p>
+			</div>
+			<div class="col">
+				<table class="table">
+				  <thead>
+				    <tr class="bg-secondary">
+				      <th scope="col">#</th>
+				      <th scope="col">Dificultad</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <th scope="row">Acceso</th>
+				      <td class="text-success">Fácil</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">Escalada de privilegios</th>
+				      <td class="text-warning">Media</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+		
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Enumeración</h4>
+		<hr>
+
+		<p>La enumeración comienza descubriendo la dirección IP de la máquina objetivo esto se hacer mediante la herramienta <a href="../proyectos/ping-sweep.html">ping-sweep</a>. La realización de un barrido ping y no un barrido ARP es debido a que la máquina objetivo está en una red distinta a la máquina objetivo, ARP es un protocolo de nivel 2 (enlace) y sus paquetes no son capaces de atravesar redes (nivel 3).</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/1.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>La herramienta ha detectado 4 IP:</p>
+		<ul>
+			<li>10.10.10.1 - linux → Gateway</li>
+			<li>10.10.10.100 - linux → Candidato a objetivo</li>
+			<li>10.10.10.101 - windows → Sistema anfitrión</li>
+			<li>10.10.10.102 - linux → Candidato a objetivo</li>
+		</ul>
+
+		<p>Se obtienen dos posibles candidatos, en mi laboratorio tengo una Raspberry Pi como NAS y un servicio samba. Por lo que para identificar cual es cual se realiza un par de escaneos ARP rápidos. Así se identifica como la máquina objetivo la que tiene dirección 10.10.10.100
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/2.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Una vez identificada la máquina objetivo se comienza con el escaneo de puertos. Como es habitual para el escaneo se utiliza nmap y se divide en dos fases: la primera de un escaneo rápido de los 65535 puertos para detectar aquellos abiertos y la segunda para realizar una enumeración más exahustiva usando scripts básicos de los puertos abiertos.</p>		
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/3.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<br />
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/4.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+		<p>Se detectan los puertos 80 y 800 abiertos con los servicios HTTP y SSH respectivamente. Es de extrañar que el servicio SSH se encuentre en el puerto 800.</p>
+		<p>Se utiliza whatweb para enumerar rápidamente la web y curl para detectar si existe un fichero robots.txt.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/5.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>En el fichero robots.txt se encuentra la ruta /sexy/*.jpg, por lo que será necesario un posterior fuzzing para encontrar imágenes ocultas.</p>
+
+		<p>A continuación se vuelve a utilizar curl para obtener el código html de la página principal encontrando al final del contenido un comentario con un potencial usuario.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/6a.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Consultando la web con el navegador se encuentra una imagen de nuestro todo poderoso y salvador Richard Stallman.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/6b.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+		<p>A continuación, se realiza el fuzzing sobre la ruta encontrada en el fichero robots.txt.
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/7.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Se encuentra la imagen nudeslut.jpg.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/8.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+		<p>La imagen se descarga para consultar sus metadatos y comprobar si tiene algo de estego.</p>
+		
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/9.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>En los metadatos se encuentra la contraseña de acceso: chmodxheart.</p>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Ganar acceso</h4>
+		<hr>
+
+		<p>Una vez con las credenciales ruut:chomodxheart puede contectarse a la máquina a través del servicio SSH.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/10.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Se consultna los usuarios del sistema y se encuentran 3 usuarios: root, ruut y superruut. Lo más seguro es que sea necesario escalar a superruut y de superruut a root.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/12.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Ahora se consultan los permisos de ruut y se encuentran permisos suid para dos binarios extraños: conky y calife.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/11.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Consultando el manual de los binarios para determinar en qué consisten y qué realizan.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/13.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+		<br />
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/14.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Escalada de privilegios - Primera fase</h4>
+		<hr>
+
+		<p>Como el manual indica, el binario calife puede utilizarse para convertirse en root o en otro usuario. El vector para la escalada a superruut será este binario, para ello se ejecuta el binario y se indica el usuario al que se quiere escalar.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/15.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>En VIM se ejecuta una /bin/bash para conseguir una shell interactiva.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/16.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+		<p>Ya puede consultarse la flag de user.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/18.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Ahora será necesario la escalada a root. Se vuelven a consultar los permisos </p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/17.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Escalada de privilegios - Segunda fase</h4>
+		<hr>
+
+		<p>La escalada mediante el binario conky es la más compleja realizada hasta la fecha. Conky, como indicaba el manual, es un monitor del sistema por lo que la escalda deberá estar realionada con la exfiltración de algún archivo privilegiado como shadow o la clave privada de root.</p>
+
+		<p>Sin embargo, antes de iniciar con la escalada se generan un par de claves para conectarse como superruut mediante SSH sin proporcionar contraseña. Esto facilitará conectar como superruut sin tener que realizar todo el proceso de calife.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/21.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+		<p>Se incluye la clave pública generada en el arhcivo authorized_keys de superruut.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/22.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+		<p>Ya se puede conectar como superruut sin proporcionar contraseña.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/23.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Ahora sí, se copia el archivo de configuración de conky en el la carpeta de superuut y se edita para mostrar información a través de la terminal.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/19.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+		<br/>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/20.PNG" alt="error loading image :(" class="img-fluid">
+		</div>		
+
+		<p>También será necesario modificar los archivos de conky para que muestren la información deseada por la consola, en este caso se desea exfiltrar la clave privada de root (si existe).</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/27.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+		<p>Se ejecuta conky y se realiza una nueva conexión mediante SSH para que se muestren los datos monitorizados por conky así como la clave privada de root en la terminal debería mostrarse la clave privada de root.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/28.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+		<br />
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/29.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+		<p>Se copia la clave privada y se realiza una conexión SSH como root y proporcionando la clave privada. No olvidar que es necesario asignar los permisos correctos a la clave privada antes de utilizarla.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/30.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+		<p>Por último se consulta la flag de root y se sube a la web de hack-my-vm.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/challenges/t800/31.PNG" alt="error loading image :(" class="img-fluid">
+		</div>
+
+
+	</main>
+	<br/>
+	<footer class="container">
+		<div class="row">
+			<div class="col">
+				<a href="../challenges.html"> ← Volver </a>
+			</div>
+			<div class="col">
+				<div class="d-flex flex-row-reverse">
+					<ul class="social-network social-circle"> <!-- thanks to https://codepen.io/NamiqNamaz/pen/QZYyEq --> 		<li>
+							<a href="https://github.com/migue27au" class="icoGithub" title="Facebook"><i class="fa fa-github" style="color: white;"></i></a>
+						</li>
+						<li>
+							<a href="https://www.linkedin.com/in/migue27au" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin" style="color: white;"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+	<a id="topBtn" class="text-primary" onclick="toTop()"><i class="fa fa-angle-up fa-3x"></i></a>
+	<script type="text/javascript">
+		//Get the button:
+		btn = document.getElementById("topBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+		function scrollFunction() {
+			if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+				btn.style.opacity = "1";
+			} else {
+				btn.style.opacity = "0";
+			}
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function toTop() {
+			document.body.scrollTop = 0; // For Safari
+			document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		}
+	</script>
+
+</body>
+</html>
+
+
+	
