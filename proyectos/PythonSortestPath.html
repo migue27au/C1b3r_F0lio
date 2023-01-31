@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>C1b3r_F0lio - Python Sortest Path</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Boostrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	<!-- footer -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/footer.css">
+
+	<!-- top button -->
+	<link rel="stylesheet" href="../css/topbutton.css">
+	<link rel="stylesheet" href="../css/scroll.css">
+</head>
+<body class="bg-dark">
+
+
+	<header>
+		<div> <!--navbar -->
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="../index.html">C1b3r_F0lio</a>
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../challenges.html">Challenges</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../proyectos.html">Proyectos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../logros.html">Logros</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		</div>
+		<div> <!--background image -->
+			<img src="../images/background.gif" class="img-fluid" alt="Responsive image">
+		</div>
+	</header>
+	<br/>
+	<main class="container bg-dark text-white">
+		
+		<div class="row">
+            <div class="col col-10">
+    		  <h1 class="display-4">Python Sortest Path</h1>
+            </div>
+            <div class="col col-2 d-flex flex-row-reverse">
+                 <h5 class="text-secondary">Enero 2023</h5>
+            </div>
+		</div>
+		
+		<p>Jugando a <a href="https://adventofcode.com/">Advent Of Code</a> me topé con el ejercicio número 12. Este ejercicio requería encontrar el camino más corto hasta la cima de una montaña. Para ello se da al jugador un mapa topográfico de 26 niveles de altura indicados por letras del abecedario, una posición inicial y una posición final.</p>
+
+		<p>Las restricciones son muy simples:</p>
+		<ul>
+			<li>Se puede mover hacia arriba, abajo, izquierda y derecha. No en diagonal.</li>
+			<li>No se puede mover a casillas que estén a más de una unidad de altura de diferencia de la posición en la que se está.</li>
+		</ul>
+
+		<p>Yo traté darle un punto de vista diferente al ejercicio y en lugar de buscar la distancia más corta entre dos puntos, trataría de encontrar todos los puntos alcanzables y la distancia más corta hasta cada uno de ellos dada una posición de origen. Estaría claro que mi forma sería más costosa en tiempo de ejecución debido a que calcularía la distancia hasta cada uno de los puntos del plano.</p>
+		<p>Ya existen multitud de algoritmo que encuentran la ruta óptima entre dos puntos basándose en grafos y en longitudes de Manhattan. Yo quería ponerme de reto no utilizar estos algoritmos y crear un algoritmo por mis propios medios que sea capaz de calcular la distancia a los puntos más cercanos de un golpe.</p>
+		<p>Además, quise poder añadir zonas prohibidas en el plano. Que pudieran representar, por ejemplo, propiedades privadas en las que no se pudiera acceder. Por lo que las restricciones quedarían:</p>
+		<ol>
+			<li>Se puede mover hacia arriba, abajo, izquierda y derecha. No en diagonal.</li>
+			<li>No se puede mover a casillas que estén a más de una unidad de altura de diferencia de la posición en la que se está.</li>
+			<li>Utilizar el razonamiento lógico para realizar un nuevo algoritmo que pudiera encontrar el camino más corto a cada uno de los puntos del plano, dada una posición de origen.</li>
+			<li>Poder añadir zonas prohibidas al mapa topográfico que no puedan ser accesibles.</li>
+			<li>No utilizar librerías externas.</li>
+		</ol>
+		<p>El primer paso, fue poder visibilizar el mapa topográfico en la terminal. Este mapa debería servir para ver de un vistazo los puntos accesibles del plano y su altura correspondiente mediante colores.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/proyectos/PythonSortestPath/topographic_map_1.png" alt="" class="img-fluid" width="50%" height="50%">
+		</div>
+
+		<p>El siguiente paso era diseñar el algoritmo. Esta tarea llevó varios días hasta dar con el método correcto que lograra devolver la distancia a todos los planos. A continuación, explico brevemente su funcionamiento.</p>
+		<ul>
+			<li>Se crea un poliedro que represente todos los movimientos posibles en un radio de X unidades. Dada la regla uno la figura se correspondería con un octaedro. Si se pudiera mover en diagonal la figura se parecería más a una esfera.</li>
+			<li>Se selecciona el punto origen y se crea un plano (bidimensional) con los puntos a una altura alcanzable de acuerdo a la regla 2.</li>
+			<li>Se coloca el octaedro encima del punto inicial en el plano y va bajando la altura del octaedro para que vaya atravesando el plano. Los puntos que interseccionan el octaedro con el plano corresponderán a la distancia de esos puntos con el punto inicial en el plano. Debe tenerse en cuenta que los puntos no deben saltar zonas inalcanzables, como barrancos o montañas. Ni estar dentro de zonas prohibidas por la regla 4.</li>
+			<li>Se guarda la distancia a los nuevos puntos (indicada por las unidades que se ha bajado el octaedro) más la distancia del punto inicial al origen.</li>
+			<li>Se repite este proceso para casi todos los puntos hasta completar el mapa topográfico.</li>
+			<li>Conocida la distancia a cada uno de los puntos, puede calcularse el camino más corto de forma sencilla.</li>
+		</ul>
+
+		<p>En la siguientes imagenes puede visualizarse el proceso de cálculo de las distancias. Los colores verdes indican cercanía y rojo lejanía. Un cambio brusco de color entre verde y rojo significa que se le ha dado la vuelta al contador de colores, por lo que hasta el cambio de color habrá una distancia de 255 unidades. Finalmente, una casilla en color cian representa sobre qué punto está ubicado el octaedro en esa ejecución.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/proyectos/PythonSortestPath/calculate_sortest_path_1.png" alt="" class="img-fluid" width="50%" height="50%">
+		</div>
+		<br/>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/proyectos/PythonSortestPath/calculate_sortest_path_2.png" alt="" class="img-fluid" width="50%" height="50%">
+		</div>
+		<br/>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/proyectos/PythonSortestPath/calculate_sortest_path_3.png" alt="" class="img-fluid" width="50%" height="50%">
+		</div>
+		<br/>
+		<p>Tras unos pocos minutos se calcula el mapa de distancias y se podrá introducir las coordenadas de un punto final para que la ruta sea representada en el mapa topográfico.</p>
+		<p>Es posible que haya varios caminos con la misma longitud hasta el origen, el script está programado para devolver el primer camino que encuentre.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/proyectos/PythonSortestPath/sortest_path_1.png" alt="" class="img-fluid" width="100%" height="100%">
+		</div>
+		<br/>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/proyectos/PythonSortestPath/sortest_path_2.png" alt="" class="img-fluid" width="100%" height="100%">
+		</div>
+		<br/>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/proyectos/PythonSortestPath/sortest_path_3.png" alt="" class="img-fluid" width="100%" height="100%">
+		</div>
+		<br/>
+
+		<p>La eficiencia del algoritmo es exponencial O(c<sup>n</sup>).</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/proyectos/PythonSortestPath/eficiencia.png" alt="" class="img-fluid" width="50%" height="50%">
+		</div>
+		<br/>
+
+		<p>No será el más eficiente, pero es el mío.</p>
+	</main>
+	<br/>
+	<footer class="container">
+		<div class="row">
+			<div class="col">
+				<a href="../proyectos.html"> ← Volver </a>
+			</div>
+			<div class="col">
+				<div class="d-flex flex-row-reverse">
+					<ul class="social-network social-circle"> <!-- thanks to https://codepen.io/NamiqNamaz/pen/QZYyEq --> 		<li>
+							<a href="https://github.com/migue27au" class="icoGithub" title="Facebook"><i class="fa fa-github" style="color: white;"></i></a>
+						</li>
+						<li>
+							<a href="https://www.linkedin.com/in/migue27au" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin" style="color: white;"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<a id="topBtn" class="text-primary" onclick="toTop()"><i class="fa fa-angle-up fa-3x"></i></a>
+	<script type="text/javascript">
+		//Get the button:
+		btn = document.getElementById("topBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+		function scrollFunction() {
+			if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+				btn.style.opacity = "1";
+			} else {
+				btn.style.opacity = "0";
+			}
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function toTop() {
+			document.body.scrollTop = 0; // For Safari
+			document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		}
+	</script>
+</body>
+</html>
+
+
+	
