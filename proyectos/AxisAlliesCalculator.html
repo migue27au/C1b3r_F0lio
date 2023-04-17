@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>C1b3r_F0lio - Axis&amp;Allies Calculator</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Boostrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	<!-- footer -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/footer.css">
+
+	<!-- top button -->
+	<link rel="stylesheet" href="../css/topbutton.css">
+	<link rel="stylesheet" href="../css/scroll.css">
+</head>
+<body class="bg-dark">
+
+
+	<header>
+		<div> <!--navbar -->
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="../index.html">C1b3r_F0lio</a>
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../challenges.html">Challenges</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../proyectos.html">Proyectos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../logros.html">Logros</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		</div>
+		<div> <!--background image -->
+			<img src="../images/background.gif" class="img-fluid" alt="Responsive image">
+		</div>
+	</header>
+	<br/>
+	<main class="container bg-dark text-white">
+		
+		<div class="row">
+            <div class="col col-10">
+    		  <h1 class="display-4">Axis&amp;Allies Calculator</h1>
+            </div>
+            <div class="col col-2 d-flex flex-row-reverse">
+                 <h5 class="text-secondary">17 abril 2023</h5>
+            </div>
+		</div>
+		
+		<p>Hace bastantes años, convencí a mi padre para que me comprara un juego de mesa de estrategia de la Segunda Guerra Mundial. Desde pequeño, me gustaban los videojuegos de estrategia y ver películas y series como "Salvando al soldado Ryan", "The Pacific" y "Band of Brothers" con mis padres, lo cual hizo que me interesara mucho por la historia relacionada con la Segunda Guerra Mundial.</p>
+		<p>En resumen, este juego se parece mucho al conocido "Risk", pero con una complejidad mucho mayor. Además de incluir economía, hay muchos tipos de unidades, una infinidad de estrategias y la posibilidad de inventar nuevas reglas para ampliar el juego.</p>
+
+		<div class="d-flex justify-content-center">
+			<img src="../images/proyectos/AxisAlliesCalculator/AxisAlliesMap.png" class="img-fluid">
+		</div><br/>
+		<p>Debido a su complejidad y larga duración de las partidas, no he encontrado a mucha gente con la que pueda jugar a este juego de mesa.</p>
+
+		<p>Hace poco vi la caja del juego en la estantería de mi casa, cogiendo polvo. Decidí sacarlo y tratar de hacerlo más ameno y corto. Uno de los aspectos más interesantes y complejos del juego son las batallas entre unidades, ya que dependiendo de la combinación de unidades del atacante y el defensor, existen una serie de ventajas e inconvenientes. El gran número de batallas que ocurren en una partida y el hecho de que estas se desarrollen lanzando dados y comparando resultados, hacen que el juego se vuelva pesado y no den ganas de jugarlo.</p>
+
+		<p>Para evitar este problema, decidí buscar alguna aplicación que permitiera introducir las unidades de cada bando, calcular las probabilidades de victoria y las unidades restantes. Desafortunadamente, no encontré ninguna. Sin embargo, mi lamento no duró mucho, ya que recordé que soy ingeniero y que tengo las capacidades, y sobre todo las ganas, de programar una calculadora que haga esto.</p>
+
+		<p>La solución óptima es que la calculadora sea una aplicación móvil, para que todos los jugadores puedan tenerla en su teléfono y realizar las batallas, e incluso predecir los resultados sin tener que estar lanzando dados continuamente. La solución más rápida sería hacer una aplicación web con HTML, CSS y JavaScript para realizar toda la lógica y el cálculo de probabilidades. Luego, se puede utilizar <a href="https://cordova.apache.org/">Apache Cordova</a> para compilar la aplicación web en un archivo APK para dispositivos Android o un archivo IPA para dispositivos iOS.</p>
+
+		<p>Además, de esta forma puedo adquirir un poco de soltura con JavaScript y CSS que nunca viene mal..</p>
+
+		<p>La aplicación consiste en una vista principal con un formulario en el que se introducen el número de unidades ofensivas y defensivas que participarán en la batalla. En segundo plano, la aplicación aplica las ventajas a cada unidad, realiza todos los cálculos y devuelve las bajas de cada bando. Para que tengas una idea de la cantidad de relaciones que existen, a continuación, te proporciono algunos ejemplos:</p>
+		<ul>
+			<li>La infantería recibe una mejora de ataque si es acompañada por artillería.</li>
+			<li>Los cruceros y acorazados pueden atacar a unidades terrestres que se encuentren en la costa. Submarinos, destructores y portaaviones no pueden.</li>
+			<li>A diferencia del resto de unidades marítimas, los acorazados necesitan dos impactos para hundirse.</li>
+			<li>Las unidades aéreas pueden atacar a todas las unidades, excepto a los submarinos. Sin embargo, si la fuerza aérea está acompañada por una unidad de destructor, entonces sí podrá atacar a los submarinos.</li>
+		</ul>
+
+		<p>Además, has incluido una variable para reducir la aleatoriedad. Esta variable permite indicar cuántas veces se desea simular la batalla antes de realizarla para reducir la variable probabilística.</p>
+		<p>He subido el código de la aplicación y una APK a mi <a href="https://github.com/migue27au/AxisAlliesCalculator">github</a>, para todo el que quiera descargarla y utilizarla.</p>
+
+		<p>Finalmente, la vista de la aplicación queda:</p>
+		<div class="d-flex justify-content-center">
+			<img src="../images/proyectos/AxisAlliesCalculator/calculator1.jpg" class="img-fluid">
+		</div><br/>
+		<p>Después de establecer un número de unidades y pulsar en "Calculate" se restarán las bajas y se indicarán los impactos realizados por cada unidad.</p>
+		<div class="d-flex justify-content-center">
+			<img src="../images/proyectos/AxisAlliesCalculator/calculator2.jpg" class="img-fluid">
+		</div><br/>
+		<p>Quedan algunos detalles por pulir, pero con esta calculadora, una tarea que solía llevar minutos ahora se reduce a segundos. ¡Y sin tener que buscar dados por el suelo!</p>
+		
+	</main>
+	<br/>
+	<footer class="container">
+		<div class="row">
+			<div class="col">
+				<a href="../proyectos.html"> ← Volver </a>
+			</div>
+			<div class="col">
+				<div class="d-flex flex-row-reverse">
+					<ul class="social-network social-circle"> <!-- thanks to https://codepen.io/NamiqNamaz/pen/QZYyEq --> 		<li>
+							<a href="https://github.com/migue27au" class="icoGithub" title="Facebook"><i class="fa fa-github" style="color: white;"></i></a>
+						</li>
+						<li>
+							<a href="https://www.linkedin.com/in/migue27au" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin" style="color: white;"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<a id="topBtn" class="text-primary" onclick="toTop()"><i class="fa fa-angle-up fa-3x"></i></a>
+	<script type="text/javascript">
+		//Get the button:
+		btn = document.getElementById("topBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+		function scrollFunction() {
+			if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+				btn.style.opacity = "1";
+			} else {
+				btn.style.opacity = "0";
+			}
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function toTop() {
+			document.body.scrollTop = 0; // For Safari
+			document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		}
+	</script>
+</body>
+</html>
+
+
+	
