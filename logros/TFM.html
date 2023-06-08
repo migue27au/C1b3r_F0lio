@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>C1b3r_F0lio - El viaje del conocimiento</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Boostrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	<!-- footer -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/footer.css">
+
+	<!-- top button -->
+	<link rel="stylesheet" href="../css/topbutton.css">
+</head>
+<body class="bg-dark">
+
+	<header>
+		<div> <!--navbar -->
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="../index.html">C1b3r_F0lio</a>
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="../index.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../challenges.html">Challenges</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../proyectos.html">Proyectos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../logros.html">Logros</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		</div>
+		<div> <!--background image -->
+			<img src="../images/background.gif" class="img-fluid" alt="Responsive image">
+		</div>
+	</header>
+	<br/>
+	<main class="container bg-dark text-white">
+		
+		<div class="row">
+            <div class="col col-10">
+    		  <h1 class="display-4">El viaje del conocimiento</h1>
+            </div>
+            <div class="col col-2 d-flex flex-row-reverse">
+                 <h5 class="text-secondary">25 mayo 2023</h5>
+            </div>
+		</div>
+		
+		<hr>
+		<h4 class="d-flex justify-content-center">Prólogo</h4>
+		<hr>
+		<p>Hoy estoy de celebración, por fin han publicado en actas la nota de mi Trabajo Fin de Máster, con esto finalizo mi Máster en Seguridad Informática por la Universidad de Jaén.</p>
+		<p>Durante los últimos dos años, me he sumergido en un proyecto que ha abarcado una amplia gama de áreas de conocimiento, ha desafiado mis habilidades y, sobre todo, me ha brindado una oportunidad invaluable de aprendizaje y crecimiento personal.</p>
+		<p>El TFM, sin duda alguna, representa uno de los desafíos más significativos y gratificantes que he enfrentado en mi trayectoria académica. Su envergadura y extensión han permitido que me sumerja en diferentes disciplinas y me haya permitido explorar aspectos diversos relacionados con mi área de estudio. A medida que avanzaba en este proyecto, me di cuenta de la amplitud del conocimiento que debía adquirir para abordar de manera adecuada cada aspecto de mi investigación.</p>
+		<p>A lo largo de este proceso, me he enfrentado a desafíos intelectuales y técnicos que han requerido una dedicación y esfuerzo constantes. Sin embargo, cada obstáculo superado ha resultado en un crecimiento personal invaluable. He aprendido a investigar, a sintetizar información compleja, a desarrollar mi capacidad crítica y a aplicar metodologías rigurosas en la búsqueda de respuestas.</p>
+		<p>Titulado "Diseño e implementación de un sistema de transmisión y monitorización de SFA en localizaciones remotas", mi TFM es un proyecto de investigación y desarrollo y continuación de mi TFG. Este proyecto define el diseño e implementación de un sistema inalámbrico de monitorización para SFA (sistemas fotovoltaicos autónomos) instalados en localizaciones remotas, como pueden ser las comunidades de los países en desarrollo.</p>
+		<p>Con este trabajo se pretende centralizar los datos de monitorización de diversos SFA y transmitirlos a través de Internet a un servidor para que sean accesibles de manera remota. Se tendrán en cuenta técnicas de seguridad para la transmisión y almacenamiento de datos así como prevención de ataques al servidor donde se almacena la información.</p>
+		<p>Finalmente, el día 25 de mayo de 2023 defendí mi Trabajo Fin de Máster frente al tribunal de la Universidad de Jaén, el cual determinó que merecía la máxima nota y <b>matrícula de honor</b>. En esta sección de mi blog, trato de resumir el trabajo realizado y del cual me siento muy orgulloso.</p>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Introducción</h4>
+		<hr>
+
+		<p>Para comenzar, que es un Sistema Fotovoltaico Autónomo o SFA por siglas. Esto es un sistema capaz de producir energía y autoabastecerse aprovechando la energía solar. Consta de 3 partes fundamentales: el módulo fotovoltaico para generar la energía, la batería para almacenar la energía excedente que será usada cuando no haya  luz solar y la carga a alimentar.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/logros/TFM/sfa_esquematico.png" width="33%" alt="error loading image :(" class="img-fluid">
+		</div>
+		<p>Para generar energía a partir del sol un módulo fotovoltaico se compone de muchas células fotovoltaicas. Estas células suelen están basadas en una capa P y una capa N que generan una diferencia de potencial cuando incide la luz solar.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/logros/TFM/celula_fotovoltaica.png" width="33%" alt="error loading image :(" class="img-fluid">
+		</div>
+		<p>Los SFA son muy utilizados, por ejemplo es muy común verlos en el ámbito de la agricultura para dar energía a los sistemas de riego. Sin embargo, existe todavía una gran parte de la población que no dispone de acceso a la electricidad donde los SFA tienen un papel fundamental. Ya que son utilizados como fuente principal de energía en pequeñas comunidades de localizaciones remotas. Por ejemplo, en muchas zonas de África.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/logros/TFM/uso_electricidad.png" alt="error loading image :(" class="img-fluid">
+		</div>
+		<p>Estas comunidades se componen de pequeñas viviendas,  cada una con un pequeño SFA para dar energía a pequeños electrodomésticos y aparatos eléctricos.</p>
+		<p>Sin embargo, debido a los escasos recursos de estas comunidades los SFA no suelen incluir un sistema de monitorización. El cual es muy importante ya que ayuda a prevenir fallos y permite alargar enormemente la vida útil de los SFA.</p>
+		<p>Tras un estudio inicial y debido al contexto en el que se encuentran estos SFA, la solución que hemos considerado óptima es conectar todos los dataloggers en una red inalámbrica que permita enviar los datos a un servidor en Internet. Esto de beneficios como:</p>
+		<ul>
+			<li>Un acceso rápido a los datos debido a que los datos se recogen de forma centralizada y pueden accederse desde Internet.</li>
+			<li>Al monitorizar varios SFA de forma conjunta se permite comparar rendimientos entre unos y otros y por tanto detectar fallos individuales o patrones de fallos.</li>
+			<li>Permite disminuir los costes. Ya que utilizar una red para enviar los datos elimina componentes redundantes y puede conseguirse que algunos sistemas de monitorización sean más simples. Un ejemplo es que no haría falta un dispositivo de almacenamiento físico en cada uno de los dataloggers.</li>
+			<li>No es necesario desplazarse hasta la comunidad para obtener los datos de un dispositivo de almacenamiento físico como una tarjeta SD o un pen-drive.</li>
+		</ul>
+		<p>No obstante, todos estos beneficios no son gratis ya que la red a desplegar requiere de una gran complejidad.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/logros/TFM/red_monitoracion.png" width="33%" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Antecedentes</h4>
+		<hr>
+
+		<p>¿Cuales son los dataloggers que hay en el mercado que podrían utilizarse para este propósito?</p>
+		<p>Pues hay muchos fabricantes, pero ninguno de ellos se adecua de forma óptima al proyecto debido a que tienen un coste muy elevado, no tienen suficientes entradas para realizar la correcta monitorización de los parámetros de un SFA o además requieren utilizar otros productos del fabricante para realizar una monitorización plena. Como es el caso del fabricante Morningstar o Schneider.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/logros/TFM/fabricantes.png" width="100%" alt="error loading image :(" class="img-fluid">
+		</div>
+		
+		<p>Si no se va utilizar ningún dispositivo comercial pues tendrá que fabricarse un sistema. Los problemas a enfrentar  para fabricar el sistema será la elección del datalogger, cómo se va a realizar las comunicaciones entre dataloggers, cómo se van a enviar los datos al servidor y cómo va a ser el propio servidor.</p>
+
+		<p>Para el datalogger la forma más sencilla es utilizar una plataforma de desarrollo que ya cuente con un número suficiente de entradas y puertos de comunicaciones para conectar todos los sensores y componentes necesarios. Las plataformas más utilizadas son: Arduino, ESP32 o Raspberry PI.</p>
+		<div class="row">
+			<div class="col">
+				<div class="d-flex justify-content-center">
+					<img loading="lazy" src="../images/logros/TFM/arduino_due.png" width="100%" alt="error loading image :(" class="img-fluid">
+				</div>
+			</div>
+			<div class="col">
+				<div class="d-flex justify-content-center">
+					<img loading="lazy" src="../images/logros/TFM/esp32.png" width="100%" alt="error loading image :(" class="img-fluid">
+				</div>
+			</div>
+			<div class="col">
+				<div class="d-flex justify-content-center">
+					<img loading="lazy" src="../images/logros/TFM/raspberry.png" width="100%" alt="error loading image :(" class="img-fluid">
+				</div>
+			</div>
+		</div>
+		<p>Para la comunicación de estos dataloggers hay otro montón de opciones entre las que hay protocolos inalámbricos como WiFi, Bluetooth o Zigbee o soluciones privadas como Z-Wave, LoRaWAN o Sigfox.</p>
+		
+		<p>Para las comunicaciones entre los dataloggers y el servidor pueden utilizarse soluciones privadas como LoRaWAN o Sigfox, conexión vía satélite con Starlink o Swarm o utilizar la red de telefonía móvil para conectar a Internet.</p>
+		
+		<p>Por último habrá que determinar qué se va a utilizar de servidor. Será necesario que tenga una base de datos, que podrá ser relacional o no relacional y de una interfaz que permita subir y consultar los datos.</p>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Objetivos</h4>
+		<hr>
+		
+		<p>Los objetivos que se han establecido son:</p>
+		<ul>
+			<li>La monitorización de todos los parámetros de un SFA. Que son: corrientes y tensiones de módulo, batería y carga, Temperatura de módulo y batería. Y algunos parámetros meteorológicos, la temperatura y humedad ambiente, precipitación y velocidad del viento.</li>
+			<li>Una gran escalabilidad. Si se quiere incorporar un nuevo dispositivo se debe realizar de forma sencilla y sin requerir cambios en la red ya desplegada.</li>
+			<li>Robustez para evitar fallos y garantizar que se realicen las mediciones.</li>
+			<li>Que tenga un coste reducido. El coste total de los sistemas de monitorización no puede ser elevado al coste total de un SFA.</li>
+			<li>Tener siempre en mente la protección de la información y de los usuarios de la aplicación incorporando las suficientes medidas de seguridad.</li>
+			<li>Y por último, fabricar un prototipo funcional.</li>
+		</ul>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Solución adoptada</h4>
+		<hr>
+
+		<p>Se han separado los dataloggers en dos sistemas.
+		<ul>
+			<li>Un sistema orquestador denominado Nodo Master que tendrá las funciones de comunicaciones con servidor, gestionar la red entre dataloggers, monitorizar un SFA y una estación meteorológica. Para todas estas operaciones se ha elegido al ESP32 debido a su bajo coste y gran potencia.
+			<div class="d-flex justify-content-center">
+				<img loading="lazy" src="../images/logros/TFM/esp32.png" width="25%" alt="error loading image :(" class="img-fluid">
+			</div>
+			</li>
+			<li>Y por otro lado, una serie de sistemas satélites denominados Nodos Slave que monitorizarán un SFA y enviarán los datos al nodo Master a través de la red de comunicación. Debido a que no realizan tantas operaciones se utiliza un Arduino Nano debido a su robustez y su bajo consumo.
+			<div class="d-flex justify-content-center">
+				<img loading="lazy" src="../images/logros/TFM/arduino_nano.png" width="25%" alt="error loading image :(" class="img-fluid">
+			</div>
+			</li>
+		</ul>
+		<p>Para las comunicaciones con el servidor se utilizará la red de telefonía móvil ya que es la que más cobertura tiene, es barata y permite una gran velocidad.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/logros/TFM/cobertura.png" width="100%" alt="error loading image :(" class="img-fluid">
+		</div>
+		<p>Para conectarse a esta red se utiliza un Router 4G que crea un punto de acceso WiFi al que se conectan los nodos Master mediante el WiFi integrado del ESP32. Además, usar un Router 4G da la posibilidad a los habitantes de la comunidad de tener acceso a Internet.</p>
+
+		<p>Para elegir el método de comunicaciones entre dataloggers se ha realizado una comparación entre todos ellos y se han descartado los menos aptos.</p>
+
+		<table class="table">
+			<thead>
+				<tr class="bg-secondary">
+					<th scope="col"></th>
+					<th scope="col">WiFi 4</th>
+					<th scope="col">BLE</th>
+					<th scope="col">Zigbee</th>
+					<th scope="col">Z-Wave</th>
+					<th scope="col">LoRaWAN</th>
+					<th scope="col">Sigfox</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">Ad-Hoc</th>
+					<th scope="col">Sí (complejo)</th>
+					<th scope="col">Sí</th>
+					<th scope="col">Sí</th>
+					<th scope="col">Sí</th>
+					<th scope="col">Sí</th>
+					<th scope="col">Sí</th>
+				</tr>
+				<tr>
+					<th scope="row">Frecuencia</th>
+					<th scope="col" colspan="3">2.4 GHz</th>
+					<th scope="col" colspan="3">&lt;1GHz</th>
+				</tr>
+				<tr>
+					<th scope="row">Alcance</th>
+					<th scope="col" colspan="3"> - </th>
+					<th scope="col">1.6 Km</th>
+					<th scope="col" colspan="2">10 Km</th>
+				</tr>
+				<tr>
+					<th scope="row">Velocidad</th>
+					<th scope="col">150 Mbps</th>
+					<th scope="col">25-50 Mbps</th>
+					<th scope="col">250 Kbps</th>
+					<th scope="col">100 Kbps</th>
+					<th scope="col">0.3-50 Kbps</th>
+					<th scope="col">600 bps</th>
+				</tr>
+				<tr>
+					<th scope="row">Seguridad</th>
+					<th scope="col">Acceso a la red (WPA2)</th>
+					<th scope="col">Acceso a la red. P2P (ECDH).</th>
+					<th scope="col">Acceso a la red. P2P (AES128).</th>
+					<th scope="col">Acceso a la red. P2P (ECDH).</th>
+					<th scope="col">Acceso a la red. P2P (AES128).</th>
+					<th scope="col"> - </th>
+				</tr>
+			</tbody>
+		</table>
+
+		<p>Los sistemas propietarios Z-Wave, LoRaWAN y Sigfox tienen las desventajas de depender de un proveedor externo y utilizar una frecuencia por debajo del gigahercio. Esto es un inconveniente ya que la frecuencia utilizada dependerá del país en el que se despliegue. Por ejemplo, en Europa se  utiliza la frecuencia 868 MHz y en EEUU se utiliza 928 MHz. Así que estas soluciones quedan descartadas.</p>
+		<p>WiFi también se ha descartado debido a que el rango que ofrece no es muy elevado y la seguridad es únicamente en acceso al medio. Una vez en la red las comunicaciones van en claro a no ser que se utilice otro protocolo que cifre los datos entre nodos.</p>
+		<p>Quedan Bluetooth Low Energy y Zigbee. La velocidad de transmisión entre estos dos es alta, mucho más en Bluetooth, pero para la cantidad de datos que se envían ambas son buenas opciones. Sin embargo, Zigbee fue un protocolo diseñado para transferencia de datos entre dispositivos IoT a largo alcance, los dispositivos que hemos utilizado pueden comunicarse hasta 1 kilómetro de distancia mientras que el dispositivo Bluetooth con mayor alcance que hemos encontrado es de 100 metros. Así que nos quedamos con <b>Zigbee</b> y haciendo uso de módulos XBee.</p>
+
+		<p>Para el servidor se ha elegido la base de datos relacional MariaDB. Ya que ofrece muy buenas prestaciones y ya se ha trabajado previamente con ella.</p>
+		<p>Para la interfaz se creará una aplicación Web dividida en dos entornos, una API REST para las comunicaciones de los nodos con el servidor y una interfaz de usuario que permita a los usuarios acceder a la aplicación mediante un navegador. Como software se utiliza Spring Boot y una arquitectura Modelo-Vista-Controlador.</p>
+
+		<p>A continuación, se muestra un esquema de toda la infraestructura a desplegar.
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/logros/TFM/Infra_previa.png" width="100%" alt="error loading image :(" class="img-fluid">
+		</div>
+		<ul>
+			<li>Los nodos Slave se conectan al nodo Master y pueden hacer uso de nodos repetidores si es necesario. En el sistema desarrollado se han configurado los módulos XBee de los nodos Slave como “routers” para permitir enrutar paquetes y ser utilizados como repetidores.</li>
+			<li>El nodo master envía los datos al servidor a través de un router 4G.</li>
+			<li>Y el servidor consta de la base de datos y la aplicación web que permite a los usuarios conectarse a través de un ordenador.</li>
+		</ul>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Desarrollo del sistema</h4>
+		<hr>
+
+		<p>Para comprender más fácilmente toda la infraestructura desplegada se ha separado en dos partes. Una parte hardware dedica a los nodos y una parte software relativa al servidor.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/logros/TFM/Infraestructura_TFM_2.png" width="100%" alt="error loading image :(" class="img-fluid">
+		</div>
+		<p>A modo resumen, los componentes electrónicos de cada nodo son:</p>
+		<div class="row">
+			<div class="col">
+				<ul>
+					<li>ESP32</li>
+					<li>XBee Pro</li>
+					<li>Tarjeta SD</li>
+					<li>RTC</li>
+					<li>3 AO de instrumentación</li>
+					<li>3 Sensores efecto hall</li>
+					<li>2 sensores de temperatura</li>
+					<li>Estación meteorológica
+					<ul>
+						<li>Arduino Nano</li>
+						<li>Sensor temperatura humedad</li>
+						<li>Anemómetro y pluviómetro</li>
+						<li>Barómetro</li>
+					</ul></li>
+				</ul>
+			</div>
+			<div class="col">
+				<ul>
+					<li>Arduino Nano</li>
+					<li>XBee Pro</li>
+					<li>3 AO de instrumentación</li>
+					<li>3 Sensores efecto hall</li>
+					<li>2 sensores de temperatura</li>
+				</ul>
+			</div>
+		</div>
+		<p>El funcionamiento del programa del nodo Master pueden distinguirse tres estados.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/logros/TFM/diagramas_flujo.png" width="100%" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<ul>
+			<li>Al inicio se obtienen los parámetros, se inician los sensores y se conecta a la red WiFi.</li>
+			<li>Después el programa entra en el bucle. En esta parte del código se realizan las distintas tareas periódicas que realiza el nodo Master. La primera tarea es consultar los parámetros del nodo Master y de los nodos Slave conectados para actualizar los parámetros si fuera necesario. Se comprueba si hay que realizar una medición de datos. Se consulta el servidor para sincronizar la hora. Y por último si hay que enviar datos al servidor. Al final del bucle se consulta al XBee si ha recibido algún paquete Zigbee.</li>
+			<li>Si se diera el caso, se verifica que tenga el formato adecuado y se comprueba si el nodo que lo ha enviado ha sido autenticado. Si no, pues se le envía un paquete de solicitud de autenticación o si ya ha respondido con los parámetros de autenticación se autentica mediante una consulta al servidor. Si el nodo sí esta autenticado pues seguramente nos haya indicado el valor de sus parámetros o nos habrá enviado datos. En el primer caso se envían los parámetros del nodo al servidor y en el segundo se almacenan los datos recibidos en la pila de datos para ser posteriormente enviados al servidor y se envía al nodo un ACK de que se han recibido correctamente.</li>
+			<li>Para no alargar la presentación de forma innecesaria el funcionamiento del nodo Slave no lo voy a explicar porque es similar al nodo Master pero sin las comunicaciones al servidor.</li>
+		</ul>
+
+		<p>Como hemos dicho para la base de datos se utiliza MariaDB y para el servidor una arquitectura MVC con una API REST y una interfaz web desarrollada en Spring Boot.</p>
+		<p>Para desplegarlo se realiza mediante Docker ya que permite desplegar el sistema de forma rápida en cualquier tipo de servidor. Ya sea en una Raspberry PI o en la nube. Además, se pueden añadir imágenes de un WAF o de un balanceador de carga si se viera necesario.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/logros/TFM/arquitectura_servidor.png" width="100%" alt="error loading image :(" class="img-fluid">
+		</div>
+		<p>A continuación, se pueden ver dos vistas de la aplicación Web. La vista principal arriba  y la presentación de los datos monitorizados en forma de gráfica.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/logros/TFM/vista_app_1.png" width="100%" alt="error loading image :(" class="img-fluid">
+		</div>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/logros/TFM/vista_app_2.png" width="100%" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Con respecto a la seguridad se han implementado numerosas medidas. Para explicar el porqué de cada medida pues se ha seleccionado el TOP 10 de vulnerabilidades más comunes según el OWASP.</p>
+		<table class="table">
+			<thead>
+				<tr class="bg-secondary">
+					<th scope="col">OWASP TOP10</th>
+					<th scope="col">Prevención</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">1. Broken Access Control</th>
+					<th scope="col">Validación de permisos de nodos y usuarios.</th>
+				</tr>
+				<tr>
+					<th scope="row">2. Cryptographic Failures</th>
+					<th scope="col">HTTPS, HSTS, SSL Pinning y doble cifrado, nonce aleatorios, hash de contraseñas</th>
+				</tr>
+				<tr>
+					<th scope="row">3. Injection</th>
+					<th scope="col">Estricta validación y sanitización de entradas.</th>
+				</tr>
+				<tr>
+					<th scope="row">4. Insecure Design</th>
+					<th scope="col">Robustez, escalabilidad y seguridad desde el inicio. Git, SonarQube, Docker hub</th>
+				</tr>
+				<tr>
+					<th scope="row">5. Security Misconfiguration</th>
+					<th scope="col">Evitar usar configuraciones por defecto</th>
+				</tr>
+				<tr>
+					<th scope="row">6. Vulnerable and Outdated Components</th>
+					<th scope="col">Uso de últimas versiones</th>
+				</tr>
+				<tr>
+					<th scope="row">7. Identification and Authentication Failures</th>
+					<th scope="col">Política de contraseñas, _csrf, X-Frame-Options, no sesiones concurrentes, fail2ban.</th>
+				</tr>
+				<tr>
+					<th scope="row">8. Software and Data Integrity Failures</th>
+					<th scope="col">Uso de librerías de orígenes confiables.</th>
+				</tr>
+				<tr>
+					<th scope="row">9. Security Logging and Monitoring Failures</th>
+					<th scope="col">Monitorización de actividad de los usuarios. Detección de acciones maliciosas.</th>
+				</tr>
+				<tr>
+					<th scope="row">10. Server Side Request Forgery (SSRF)</th>
+					<th scope="col"><i>No está contemplado en la aplicación.</i></th>
+				</tr>
+			</tbody>
+		</table>
+		<ul>
+			<li>La primera vulnerabilidad está relacionada con el acceso no autorizado a recursos. Para evitarla lo que se hace es una estricta validación de los permisos de los nodos y de los usuarios.</li>
+			<li>La segunda vulnerabilidad ocurre cuando hay debilidades en la encriptación. Para evitarla se utiliza HTTPS en todas las comunicaciones con el servidor, los nodos cuentan con un mecanismo de SSL Pinning además de un doble cifrado de las comunicaciones. Se utilizan nonce aleatorios mediante la obtención de ruido en uno de los pines del ESP32 y las contraseñas se almacenan hasheadas en la base de datos.</li>
+			<li>Para evitar las inyecciones se realiza una sanitización de todas las entradas de la aplicación. Tanto de los nodos como de los usuarios.</li>
+			<li>La cuarta vulnerabilidad aparece cuando no se ha tenido en cuenta la seguridad desde un principio. Como nosotros hemos tenido siempre presente la robustez, escalabilidad y seguridad hemos evitado malas prácticas. Además, se hace uso de herramientas como Git, SonarQube y Docker Hub que realizan análisis estáticos a la aplicación.</li>
+			<li>Se ha evitado las configuraciones por defecto y malas configuraciones.</li>
+			<li>En la medida de lo posible se utilizan las últimas versiones del software y de las librerías.</li>
+			<li>Para evitar fallos en la autenticación e identificación de los usuarios. Se aplica una política de contraseñas, se añaden tokens anti CSRF en todos los formularios, se incluye la cabecera X-Frame-Options para evitar ataques de clickjacking. Se evita que un usuario tenga varias sesiones abiertas al mismo tiempo y se protege la funcionalidad de login con un fail2ban.</li>
+			<li>No se utilizan librerías de terceros, siempre de fuentes confiables y descargadas desde el repositorio de maven.</li>
+			<li>Se lleva a cabo una monitorización de todas las acciones que se realizan en la aplicación y quién las hace. Además, se implementa un sistema de detección de acciones maliciosas mediante la validación de las entradas de los usuarios.</li>
+			<li>La última vulnerabilidad aparece cuando un atacante es capaz de hacer que el servidor realice una solicitud a un recurso externo, y no se contempla ninguna funcionalidad que permita esto.</li>
+		</ul>
+		<p>Además de todo lo anterior se han implementado otras medidas de seguridad:</p>
+		<ul>
+			<li>No se envían datos sensibles a través del método GET. Esto es para evitar que los datos sensibles aparezcan en la URL. Si hay algún proxy o servidor de VPN que monitoriza las páginas visitadas por los usuarios, los datos sensibles aparecerían en los registros.</li>
+			<li>Todas las páginas de la aplicación devuelven las cabeceras de seguridad HTTP. Content-Type-Options, XSS-Protection, Cache-Control, HSTS, X-Frame-Options y CSP.</li>
+			<li>Se realiza una gestión de error para evitar que trazas de error y mensajes de error por defecto se devuelvan a los usuarios.</li>
+			<li>Se mitiga la fuga de información. No se incluyen las cabeceras Server ni Powered By. Se han eliminado los metadatos y números de versión de los archivos estáticos y se ha eliminado la información por defecto de los mensajes de error.</li>
+			<li>Se aplica una lista blanca en la cabecera host.</li>
+			<li>Las comunicaciones entre los nodos se realiza mediante AES de 128 bits con cambios periódicos de clave. </li>
+			<li>Los datos enviados por los nodos Master al servidor están cifrados  con AES de 128 bits. Esto significa que si un atacante lograra interceptar las comunicaciones de los nodos y romper HTTPS vería datos cifrados. Además, los nodos son doblemente autenticados, primero se autentica el nodo master que envía los datos y luego a los datos de cada nodo de forma independiente.</li>
+			<li>Por último se ha realizado un test de penetración a la página web y a los nodos.</li>
+		</ul>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Análisis de resultados</h4>
+		<hr>
+
+		<p>Aquí se pueden ver un par de imágenes del prototipados. Una primera imagen en las etapas iniciales del prototipado y otra al final con el prototipo prácticamente terminado.</p>
+
+		<div class="row">
+			<div class="col">
+				<div class="d-flex justify-content-center">
+					<img loading="lazy" src="../images/logros/TFM/pcb.png" width="100%" alt="error loading image :(" class="img-fluid">
+				</div>
+			</div>
+			<div class="col">
+				<div class="d-flex justify-content-center">
+					<img loading="lazy" src="../images/logros/TFM/prototipo_final.png" width="100%" alt="error loading image :(" class="img-fluid">
+				</div>
+			</div>
+		</div>
+
+		<p>Aquí se puede ver el prototipo una vez desplegado, monitorizando un pequeño SFA con un módulo fotovoltaico y una batería.</p>
+		<p>Se ha desplegado también un pequeño nodo Slave sin sensores que envía datos simulados al servidor para comprobar que los nodos Slave también funcionan correctamente. Los cables rojo y blanco que aparecen aquí es para la alimentación del nodo, los datos se envían mediante el módulo XBee.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/logros/TFM/prototipo_desplegado.png" width="50%" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>El nodo Slave tiene un consumo máximo de 0.78 vatios. Unas 10 veces menos que una bombilla led. Y el nodo Master, debido a que tiene conectado el Router 4G, tiene un consumo de 4 vatios, la mitad de una bombilla de tipo led.</p>
+		<p>El presupuesto del nodo Slave es de 180€ y el del nodo Master de 265€</p>
+
+		<p>El nodo Master sí estaba monitorizando el SFA, aquí muestro una captura de la presión atmosférica a principios de abril y de la corriente de la batería durante todo el tiempo que estuvo monitoreando el SFA. Pueden apreciarse claramente los ciclos de carga y descarga de la batería.</p>
+
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/logros/TFM/resultados.png" width="100%" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<p>Aquí se muestran las vulnerabilidades encontradas en el Pentest Web. La vulnerabilidad más grave que se detectó  fue un XSS almacenado debido a que no se validó una de las entradas de la aplicación y junto una librería de bootstrap que permitía ejecutar código javascript codificado en HTML.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/logros/TFM/pentest_web.png" width="100%" alt="error loading image :(" class="img-fluid">
+		</div>
+		<ul>
+			<li>La vulnerabilidad de fallos de SSL se debe a que cuando se generó el certificado no se incluyó en la cadena el certificado intermediario y por tanto estaba incompleto. Además, también se debe al uso de suites de cifrado no tan seguras como es CBC. Sin embargo, el uso de estas suites debe asumirse debido a que las comunicaciones de los ESP32 con el servidor hacen uso de ellas y las librerías de encriptación no tienen implementado el uso de suites más seguras.</li>
+			<li>La vulnerabilidad de enumeración de directorios y de enumeración de usuarios no se consideran vulnerabilidades. Ya que se quiere mantener como una funcionalidad las páginas personalizadas de 404, 403, etc y la enumeración de usuarios se debe a una característica implementada en la funcionalidad de compartir nodos con otros usuarios y que requiere estar autenticado en el sistema.</li>
+			<li>Para solucionar la vulnerabilidad inyección de cabecera Host se implementó la lista blanca de dominios en esta cabecera.</li>
+			<li>Las vulnerabilidades de Configuración insegura de cabeceras HTTP y problemas de manejo de errores tienen mala pata porque dependen del servidor Tomcat utilizado y no de la aplicación. No se ha encontrado una forma, desde el framework Spring de evitar que aparezcan algunos de los mensajes de error por defecto de Tomcat. Y estos mensajes de error, al ir ajenos a la aplicación no envían las cabeceras de seguridad HTTP. Tampoco se ha visto un riesgo muy elevado de esto más allá de fuga de información pero tendrán que asumirse mientras se busca una solución.</li>
+			<li>Y por último para mitigar la fuga de información se han eliminado los metadatos de los archivos estáticos, como eran las imágenes mostradas al inicio de la aplicación y se han eliminado los número de versión de las librerías javascript utilizadas. Eso no significa que un atacante pueda descubrir la versión analizando el código, pero ya le estamos fastidiando un poco y obligarle a hacerlo.</li>
+		</ul>
+
+		<p>Con respecto al test IoT. Se han detectado tres vulnerabilidades que tendrán que asumirse, salvo la segunda que se ha mitigado levemente.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/logros/TFM/pentest_iot.png" width="100%" alt="error loading image :(" class="img-fluid">
+		</div>
+		<ul>
+			<li>La primera vulnerabilidad  se debe a que al conectarse por USB a los nodos no se requiere de ninguna autenticación. Esto requiere acceso físico al nodo pero sí habría que implementar un mecanismo de establecer una contraseña la primera vez que se configura el nodo y requerir  la contraseña cuando se conecte por USB.</li>
+			<li>La segunda vulnerabilidad es una potencial de denegación de servicio a los nodos Slave. Si un atacante dispone del suficiente número de nodos Slave puede saturar la pila de nodos autenticados del nodo Master con sus nodos dejando fuera a los nodos Slave legítimos. Esto no se puede explotar ya que ahora mismo solo hay un nodo Slave. La forma de solucionarlo será implementar un mecanismo de lista negra con el que se pueda banear a nodos Slave de la red.</li>
+			<li>Por último, el uso de suites de cifrado CBC que tendrá que asumirse hasta que implementen suites de cifrado más seguras en los ESP32.</li>
+		</ul>
+
+		<p>Uno de los ataques a los que se ha sometido el nodo Master. Con este ataque se pretendía interceptar las comunicaciones entre Nodo Master y Servidor mediante un man-in-the-middle y poder mostrar la doble encriptación que tiene los datos. Sin embargo, la medida de SSL Pinning que se ha implementado no ha permitido hacer esto.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/logros/TFM/tcp_hijacking.png" width="100%" alt="error loading image :(" class="img-fluid">
+		</div>
+		<p>Mediante un ataque ARP Spoofing podemos ponernos en medio de las comunicaciones entre nodo Master y Servidor y poder ver todos los datos transmitidos. Como puede verse en la siguiente imagen, los datos que no están cifrados, como las consultas DNS pueden verse fácilmente.</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/logros/TFM/wireshark1.png" width="100%" alt="error loading image :(" class="img-fluid">
+		</div>
+		<p>Para romper HTTPS se desplegó un servidor proxy malicioso al que redirigir el tráfico de los nodos mediante un ataque TCP hijacking. Como estamos entre medias de las comunicaciones podemos modificar la dirección IP y el número de puerto de los paquetes TCP/IP de los nodos Master y el servidor y redirigirlos al servidor Malicioso. Sin embargo, al hacer esto el nodo Master se encuentra con el certificado del servidor proxy malicioso en lugar de el del servidor y rechaza la conexión, esto es el mecanismo SSL Pinning.</p>
+		<p>En la captura de wireshark puede verse como en el handshake de SSL se le envía al nodo el certificado del servidor pero el cliente lo rechaza con un mensaje "Certificado no soportado".</p>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/logros/TFM/wireshark2.png" width="100%" alt="error loading image :(" class="img-fluid">
+		</div>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Conclusiones</h4>
+		<hr>
+
+		<p>Después de analizar los resultados se han llegado a estas conclusiones.</p>
+		<ul>
+			<li>El sistema es escalable, se puede añadir o quitar un nuevo nodo de forma sencilla. Cada nodo Master puede dar soporte hasta treinta nodos Slave. Si hicieran falta 31 nodos pues se desplegaría otro nodo Master al que poder conectar otros 30 Slave.</li>
+			<li>Se permite la configuración remota de algunos parámetros de los nodos, lo que evita tener que desplazarse hasta el sistema para cambios triviales. Además, se ha incluido una salida de propósito general que permite una pequeña capacidad de actuadores a los nodos.</li>
+			<li>Gracias a la buena planificación electrónica se han podido implementar mejoras como la tarjeta SD y reemplazar componentes dañados de forma fácil y rápida.</li>
+			<li>La tarjeta SD garantiza la disponibilidad de los datos cuando no pueden ser enviados al servidor por cualquier motivo. A las malas podrían recuperarse directamente de la tarjeta SD.</li>
+			<li>Es cierto que existen errores de offset en los datos que tendrían que ser solucionados. Esto destaca sobre todo en la corriente del módulo fotovoltaico. Sin embargo, gracias a la monitorización de los nodos pudo identificarse el fallo de la batería los primeros días del despliegue.</li>
+			<li>Se han implementado numerosas medidas de seguridad tanto en los nodos como en el servidor. Para comprobar estas medidas de seguridad y encontrar vulnerabilidades se realizó un pentest web a la aplicación y un pentest IoT a los nodos.</li>
+		</ul>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Líneas futuras</h4>
+		<hr>
+
+		<p>Y para finalizar con la presentación los siguientes pasos al sistema serían:</p>
+		<ul>
+			<li>Corregir los fallos de offset y dar solución a las vulnerabilidades que han quedado como asumidas.</li>
+			<li>Diseñar una aplicación que permita la configuración de los nodos de forma amigable.</li>
+			<li>Y permitir actualizar el firmware de los nodos de forma remota.</li>
+		</ul>
+
+	</main>
+	<br/>
+	<footer class="container">
+		<div class="row">
+			<div class="col">
+				<a href="../challenges.html"> ← Volver </a>
+			</div>
+			<div class="col">
+				<div class="d-flex flex-row-reverse">
+					<ul class="social-network social-circle"> <!-- thanks to https://codepen.io/NamiqNamaz/pen/QZYyEq --> 		<li>
+							<a href="https://github.com/migue27au" class="icoGithub" title="Facebook"><i class="fa fa-github" style="color: white;"></i></a>
+						</li>
+						<li>
+							<a href="https://www.linkedin.com/in/migue27au" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin" style="color: white;"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<a id="topBtn" class="text-primary" onclick="toTop()"><i class="fa fa-angle-up fa-3x"></i></a>
+	<script type="text/javascript">
+		//Get the button:
+		btn = document.getElementById("topBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+		function scrollFunction() {
+			if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+				btn.style.opacity = "1";
+			} else {
+				btn.style.opacity = "0";
+			}
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function toTop() {
+			document.body.scrollTop = 0; // For Safari
+			document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		}
+	</script>
+</body>
+</html>
+
+
+	
