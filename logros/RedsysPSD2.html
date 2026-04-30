@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>C1b3r_F0lio - CRTP</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Boostrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	<!-- footer -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/footer.css">
+
+	<!-- top button -->
+	<link rel="stylesheet" href="../css/topbutton.css">
+</head>
+<body class="bg-dark">
+
+	<header>
+		<div> <!--navbar -->
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="../index.html">C1b3r_F0lio</a>
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="../index.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../challenges.html">Challenges</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../proyectos.html">Proyectos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../logros.html">Logros</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		</div>
+		<div> <!--background image -->
+			<img src="../images/background.gif" class="img-fluid" alt="Responsive image">
+		</div>
+	</header>
+	<br/>
+	<main class="container bg-dark text-white">
+		
+		<div class="row">
+            <div class="col col-10">
+    		  <h1 class="display-4">Redsys PSD2 Request Signer</h1>
+            </div>
+            <div class="col col-2 d-flex flex-row-reverse">
+                 <h5 class="text-secondary">30 abril 2026</h5>
+            </div>
+		</div>
+
+		<p>He desarrollado una extensión para BurpSuite orientada a automatizar la firma de peticiones en integraciones con Redsys. Este tipo de entornos suelen añadir múltiples capas de integridad en cada request (firmas, hashes, validaciones adicionales), lo que hace que trabajar manualmente con ellas sea bastante tedioso.</p>
+		<p>La extensión nace precisamente de esa necesidad: evitar tener que recalcular firmas a mano en cada modificación de petición. En escenarios reales, donde estás probando distintos vectores o manipulando parámetros, este proceso manual se convierte rápidamente en un cuello de botella.</p>
+		<p>El funcionamiento es sencillo: intercepta las peticiones relevantes y se encarga de recalcular automáticamente las firmas necesarias para que sigan siendo válidas tras cualquier cambio. De esta forma, se puede centrar el esfuerzo en el análisis y no en repetir tareas mecánicas.</p>
+		<p>Después de desarrollarla y usarla en entorno real, la extensión ha sido aprobada y publicada en el BApp Store de PortSwigger, por lo que ya está disponible públicamente.</p>
+		<a href="https://portswigger.net/bappstore/91049d4873124486b7748a352e0d2561">Redsys PSD2 Request Signer</a>
+
+		<hr>
+		<h4 class="d-flex justify-content-center">Reflexiones</h4>
+		<hr>
+
+		<p>Este proyecto surgió básicamente para dejar de sufrir. Trabajar con Redsys a mano, con varios checks de integridad por petición, era como el castigo de Sísifo: recalculas la firma, todo cuadra, haces un cambio mínimo… y vuelta a empezar desde cero. Una y otra vez, sin fin.</p>
+		<p>Automatizar este proceso ha sido quitar esa piedra de encima (literalmente). En lugar de perder tiempo rehaciendo firmas constantemente, ahora puedo iterar rápido, probar cosas sin fricción y centrarme en lo que realmente importa.</p>
+		<p>En resumen, menos empujar piedras cuesta arriba y más romper cosas con sentido.</p>
+		<br/>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/logros/RedsysPSD2/redsyspsd2.png" width="100%" alt="error loading image :(" class="img-fluid">
+		</div>
+
+	</main>
+	<br/>
+	<footer class="container">
+		<div class="row">
+			<div class="col">
+				<a href="javascript:history.back()"> ← Volver </a>
+			</div>
+			<div class="col">
+				<div class="d-flex flex-row-reverse">
+					<ul class="social-network social-circle"> <!-- thanks to https://codepen.io/NamiqNamaz/pen/QZYyEq --> 		<li>
+							<a href="https://github.com/migue27au" class="icoGithub" title="Facebook"><i class="fa fa-github" style="color: white;"></i></a>
+						</li>
+						<li>
+							<a href="https://www.linkedin.com/in/migue27au" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin" style="color: white;"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<a id="topBtn" class="text-primary" onclick="toTop()"><i class="fa fa-angle-up fa-3x"></i></a>
+	<script type="text/javascript">
+		//Get the button:
+		btn = document.getElementById("topBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+		function scrollFunction() {
+			if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+				btn.style.opacity = "1";
+			} else {
+				btn.style.opacity = "0";
+			}
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function toTop() {
+			document.body.scrollTop = 0; // For Safari
+			document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		}
+	</script>
+</body>
+</html>
+
+
+	

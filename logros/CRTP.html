@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>C1b3r_F0lio - CRTP</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Boostrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+	<!-- footer -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/footer.css">
+
+	<!-- top button -->
+	<link rel="stylesheet" href="../css/topbutton.css">
+</head>
+<body class="bg-dark">
+
+	<header>
+		<div> <!--navbar -->
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" href="../index.html">C1b3r_F0lio</a>
+
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item">
+						<a class="nav-link" href="../index.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../challenges.html">Challenges</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../proyectos.html">Proyectos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../logros.html">Logros</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		</div>
+		<div> <!--background image -->
+			<img src="../images/background.gif" class="img-fluid" alt="Responsive image">
+		</div>
+	</header>
+	<br/>
+	<main class="container bg-dark text-white">
+		
+		<div class="row">
+            <div class="col col-10">
+    		  <h1 class="display-4">CRTP</h1>
+            </div>
+            <div class="col col-2 d-flex flex-row-reverse">
+                 <h5 class="text-secondary">16 octubre 2023</h5>
+            </div>
+		</div>
+				
+		<hr>
+		<h4 class="d-flex justify-content-center">Introducción</h4>
+		<hr>
+		<p>La CRTP (Certified Red Team Professional) es una certificación centrada en entornos Active Directory, ofrecida por Pentester Academy (actualmente bajo INE). Está orientada a la parte de Red Team y se enfoca en ataques reales contra infraestructuras corporativas basadas en Windows.</p>
+		<p>A diferencia de otras certificaciones más generales, la CRTP pone el foco directamente en Active Directory, que es uno de los objetivos más habituales en entornos empresariales. Durante el curso y el laboratorio se trabajan técnicas específicas como enumeración de dominio, abuso de permisos, Kerberos attacks o movimientos laterales dentro de la red.</p>
+		<p>El examen sigue una línea práctica similar a otras certificaciones ofensivas: se proporciona un entorno controlado donde hay que comprometer el dominio y escalar privilegios hasta obtener control total. Todo ello documentando el proceso como si se tratase de un ejercicio real de Red Team.</p>
+		<hr>
+		<h4 class="d-flex justify-content-center">Reflexiones</h4>
+		<hr>
+		<p>Después de completar la certificación, puedo decir que ha sido un paso bastante importante para profundizar en Active Directory desde el punto de vista ofensivo. Es un entorno complejo, con muchas relaciones y posibles vectores de ataque, y la CRTP obliga a entender bien cómo funciona todo por dentro.</p>
+		<p>Más allá de las herramientas, el mayor aprendizaje ha sido la metodología: saber por dónde empezar, cómo enumerar correctamente y cómo ir encadenando pequeños fallos hasta conseguir comprometer el dominio completo. En este tipo de escenarios, los detalles marcan la diferencia.</p>
+		<p>En resumen, ha sido una certificación muy enfocada y práctica, que complementa bien otros conocimientos más generales de pentesting y aporta una base sólida para trabajar en entornos corporativos reales.</p>
+		<hr>
+		<h4 class="d-flex justify-content-center">Certificado</h4>
+		<hr>
+		<br/>
+		<div class="d-flex justify-content-center">
+			<img loading="lazy" src="../images/logros/CRTP/crtp.png" width="100%" alt="error loading image :(" class="img-fluid">
+		</div>
+
+	</main>
+	<br/>
+	<footer class="container">
+		<div class="row">
+			<div class="col">
+				<a href="javascript:history.back()"> ← Volver </a>
+			</div>
+			<div class="col">
+				<div class="d-flex flex-row-reverse">
+					<ul class="social-network social-circle"> <!-- thanks to https://codepen.io/NamiqNamaz/pen/QZYyEq --> 		<li>
+							<a href="https://github.com/migue27au" class="icoGithub" title="Facebook"><i class="fa fa-github" style="color: white;"></i></a>
+						</li>
+						<li>
+							<a href="https://www.linkedin.com/in/migue27au" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin" style="color: white;"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<a id="topBtn" class="text-primary" onclick="toTop()"><i class="fa fa-angle-up fa-3x"></i></a>
+	<script type="text/javascript">
+		//Get the button:
+		btn = document.getElementById("topBtn");
+
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+		function scrollFunction() {
+			if (document.body.scrollTop > 700 || document.documentElement.scrollTop > 700) {
+				btn.style.opacity = "1";
+			} else {
+				btn.style.opacity = "0";
+			}
+		}
+
+		// When the user clicks on the button, scroll to the top of the document
+		function toTop() {
+			document.body.scrollTop = 0; // For Safari
+			document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+		}
+	</script>
+</body>
+</html>
+
+
+	
